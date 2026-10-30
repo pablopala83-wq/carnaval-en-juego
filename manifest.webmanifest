@@ -1,0 +1,26 @@
+{
+  "name": "Carnaval en Juego",
+  "short_name": "Carnaval",
+  "description": "El Carnaval tambien se juega. Previa 2027, Fallos y Tus Clasificados.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#07111e",
+  "theme_color": "#07111e",
+  "lang": "es-UY",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
