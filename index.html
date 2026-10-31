@@ -31,6 +31,7 @@
 .authbox .submit{min-height:48px;margin-top:7px}.authbox .submit:disabled{opacity:.65;cursor:wait}
 .authbox .divider{margin:23px 0 14px;font-size:10px;letter-spacing:.07em}.authbox .social{margin:0}.authbox .social button{min-height:46px}
 .google-symbol{display:inline-grid;place-items:center;width:22px;height:22px;color:#1477ff;font-size:19px;font-weight:900}
+.auth-forgot{display:block;margin:4px 0 14px auto;min-height:32px;font-size:12px}.auth-back{display:block;min-height:44px;margin:12px auto 0;font-size:13px}.auth-back:disabled{opacity:.6;cursor:wait}
 .authbox :is(input,button):focus-visible{outline:3px solid #1477ff;outline-offset:3px}
 @media(max-width:480px){.auth{padding:22px 14px}.authbox{padding:22px 18px}.authbox h1{font-size:29px}}
 </style>
@@ -41,18 +42,36 @@
     <div class="logo"><span>CARNAVAL</span><br><span class="b">EN</span> <span class="c">JUEGO</span></div>
     <h1>El Carnaval también se juega.</h1>
     <p class="auth-intro">Guardá tus Fallos y elegí tus Clasificados con tu cuenta de Carnaval en Juego.</p>
+    <div id="authStandard">
     <div class="auth-tabs" role="group" aria-label="Acceso con email"><button id="tabLogin" type="button" class="active" aria-pressed="true">Ya tengo cuenta</button><button id="tabSignup" type="button" aria-pressed="false">Crear cuenta</button></div>
     <h2 class="auth-form-title" id="authFormTitle">Entrá con tu email</h2>
     <p class="auth-help" id="authEmailHelp">Podés usar Hotmail, Outlook, Yahoo, Gmail o cualquier otro correo.</p>
     <form id="authForm">
       <div class="field"><label for="authEmail">Tu email</label><input id="authEmail" name="email" type="email" inputmode="email" placeholder="tu@email.com" autocomplete="username" autocapitalize="none" spellcheck="false" aria-describedby="authEmailHelp" required></div>
       <div class="field"><label for="authPassword">Contraseña</label><div class="password-wrap"><input id="authPassword" name="password" type="password" minlength="6" placeholder="Tu contraseña de Carnaval en Juego" autocomplete="current-password" aria-describedby="authPasswordHelp" required><button id="authPasswordToggle" class="password-toggle" type="button" aria-label="Mostrar contraseña" aria-pressed="false">Mostrar</button></div><p class="password-help" id="authPasswordHelp">Usá la contraseña de tu cuenta de Carnaval en Juego.</p></div>
+      <button id="authForgot" class="linkbtn auth-forgot" type="button">Olvidé mi contraseña</button>
       <div class="field hidden" id="authConfirmField"><label for="authPasswordConfirm">Repetí la contraseña</label><input id="authPasswordConfirm" name="password-confirmation" type="password" minlength="6" placeholder="Volvé a escribir la contraseña" autocomplete="new-password" disabled></div>
       <button id="authSubmit" class="submit" type="submit">Entrar con email</button>
     </form>
     <div id="authNotice" class="notice hidden" role="status" aria-live="polite"></div>
     <div class="divider">También podés entrar con</div>
     <div class="social"><button id="googleBtn" type="button"><span class="google-symbol" aria-hidden="true">G</span>Continuar con Google</button></div>
+    </div>
+    <div id="recoveryPanel" class="hidden">
+      <h2 class="auth-form-title" id="recoveryTitle" tabindex="-1">Recuperá tu contraseña</h2>
+      <p class="auth-help" id="recoveryHelp">Ingresá el email de tu cuenta y te enviaremos un enlace para elegir una nueva contraseña.</p>
+      <form id="recoverForm">
+        <div class="field"><label for="recoverEmail">Tu email</label><input id="recoverEmail" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" spellcheck="false" placeholder="tu@email.com" required></div>
+        <button id="recoverSubmit" class="submit" type="submit">Enviar enlace de recuperación</button>
+      </form>
+      <form id="resetForm" class="hidden">
+        <div class="field"><label for="resetPassword">Nueva contraseña</label><div class="password-wrap"><input id="resetPassword" name="new-password" type="password" minlength="6" autocomplete="new-password" placeholder="Elegí una nueva contraseña" aria-describedby="resetPasswordHelp" required><button id="resetPasswordToggle" class="password-toggle" type="button" aria-label="Mostrar nueva contraseña" aria-pressed="false">Mostrar</button></div><p class="password-help" id="resetPasswordHelp">Usá al menos 6 caracteres.</p></div>
+        <div class="field"><label for="resetPasswordConfirm">Repetí la nueva contraseña</label><input id="resetPasswordConfirm" name="password-confirmation" type="password" minlength="6" autocomplete="new-password" placeholder="Volvé a escribir la contraseña" required></div>
+        <button id="resetSubmit" class="submit" type="submit">Guardar nueva contraseña</button>
+      </form>
+      <div id="recoveryNotice" class="notice hidden" role="status" aria-live="polite"></div>
+      <button id="recoveryBack" class="linkbtn auth-back" type="button">Volver al ingreso</button>
+    </div>
   </div>
 </div>
 <div id="appView" class="shell hidden">
@@ -139,15 +158,47 @@ const SUPABASE_URL='https://pxuddoytpekeunhuvqgo.supabase.co';
 const SUPABASE_KEY='sb_publishable_iucwkSTyUg8_4je67wKQug_0MKK1snb';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 let signupMode=false;
+let recoveryMode=null,recoverySession=null;
+try{recoverySession=JSON.parse(sessionStorage.getItem('cej_recovery_session')||'null')}catch{sessionStorage.removeItem('cej_recovery_session')}
 let session=JSON.parse(localStorage.getItem('cej_session')||'null');
 let state={categories:[],event:null,round:null,ensembles:[],participants:[],performances:[],rubrics:[],rules:[],profile:null,isAdmin:false,logs:[],follows:[],myFallos:[],snapshots:[],mySelections:{},community:{}};
-async function hydrateOAuthSessionFromHash(){if(!location.hash||!location.hash.includes('access_token='))return;const p=new URLSearchParams(location.hash.slice(1));const access_token=p.get('access_token'),refresh_token=p.get('refresh_token');if(!access_token)return;const r=await fetch(SUPABASE_URL+'/auth/v1/user',{headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+access_token}});if(!r.ok)return;const user=await r.json();session={access_token,refresh_token,user,expires_in:Number(p.get('expires_in')||3600),token_type:p.get('token_type')||'bearer'};localStorage.setItem('cej_session',JSON.stringify(session));history.replaceState({},document.title,location.pathname+location.search)}
+function clearRecoverySession(){recoverySession=null;sessionStorage.removeItem('cej_recovery_session')}
+function showPasswordRecovery(mode='request'){
+  recoveryMode=mode;$('#authStandard').classList.add('hidden');$('#recoveryPanel').classList.remove('hidden');$('#appView').classList.add('hidden');$('#authView').classList.remove('hidden');
+  $('#recoverForm').classList.toggle('hidden',mode==='reset');$('#resetForm').classList.toggle('hidden',mode!=='reset');
+  $('#recoveryTitle').textContent=mode==='reset'?'Elegí tu nueva contraseña':'Recuperá tu contraseña';$('#recoveryHelp').textContent=mode==='reset'?'Escribí y confirmá una nueva contraseña para tu cuenta de Carnaval en Juego.':'Ingresá el email de tu cuenta y te enviaremos un enlace para elegir una nueva contraseña.';
+  $('#recoveryNotice').classList.add('hidden');$('#recoveryTitle').focus();
+}
+function expiredRecovery(){clearRecoverySession();showPasswordRecovery();notice($('#recoveryNotice'),'El enlace venció o ya fue utilizado. Pedí uno nuevo para recuperar tu contraseña.','error')}
+async function hydrateOAuthSessionFromHash(){
+  const p=new URLSearchParams(location.hash.slice(1)),access_token=p.get('access_token'),isRecovery=p.get('type')==='recovery';
+  if(access_token||p.has('error')||p.has('error_code')||isRecovery)history.replaceState({},document.title,location.pathname+location.search);
+  if(p.has('error')||p.has('error_code')||(isRecovery&&!access_token)){expiredRecovery();return}
+  if(!access_token&&!recoverySession)return;
+  const restoring=!access_token,token=access_token||recoverySession?.access_token;
+  if(restoring&&(!token||!recoverySession.expires_at||recoverySession.expires_at<=Date.now())){expiredRecovery();return}
+  try{
+    const r=await fetch(SUPABASE_URL+'/auth/v1/user',{headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+token}});
+    if(!r.ok)throw new Error('invalid_session');const user=await r.json();
+    if(isRecovery||restoring){
+      if(!restoring){clearRecoverySession();recoverySession={access_token,user,expires_at:Date.now()+Number(p.get('expires_in')||3600)*1000};sessionStorage.setItem('cej_recovery_session',JSON.stringify(recoverySession))}
+      session=null;localStorage.removeItem('cej_session');showPasswordRecovery('reset');return;
+    }
+    clearRecoverySession();session={access_token,refresh_token:p.get('refresh_token'),user,expires_in:Number(p.get('expires_in')||3600),token_type:p.get('token_type')||'bearer'};localStorage.setItem('cej_session',JSON.stringify(session));
+  }catch{if(isRecovery||restoring)expiredRecovery();else notice($('#authNotice'),'No se pudo validar el enlace de acceso. Volvé a iniciar sesión.','error')}
+}
 function socialLogin(provider){const redirect=location.origin+location.pathname;location.href=SUPABASE_URL+'/auth/v1/authorize?provider='+encodeURIComponent(provider)+'&redirect_to='+encodeURIComponent(redirect)}
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500)}
 function notice(el,msg,type=''){el.textContent=msg;el.className='notice '+type}
 function headers(auth=false,extra={}){const h={'apikey':SUPABASE_KEY,'Content-Type':'application/json',...extra};if(auth&&session?.access_token)h.Authorization='Bearer '+session.access_token;return h}
 async function authSignup(email,password){const r=await fetch(SUPABASE_URL+'/auth/v1/signup',{method:'POST',headers:headers(),body:JSON.stringify({email,password})});const d=await r.json();if(!r.ok)throw new Error(d.msg||d.message||d.error_description||'No se pudo crear la cuenta');return d}
 async function authLogin(email,password){const r=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{method:'POST',headers:headers(),body:JSON.stringify({email,password})});const d=await r.json();if(!r.ok)throw new Error(d.msg||d.message||d.error_description||'No se pudo iniciar sesión');return d}
+async function authRecover(email){const redirect=location.origin+location.pathname;const r=await fetch(SUPABASE_URL+'/auth/v1/recover?redirect_to='+encodeURIComponent(redirect),{method:'POST',headers:headers(),body:JSON.stringify({email})});if(!r.ok)throw new Error(r.status===429?'Esperá unos minutos antes de pedir otro enlace.':'No se pudo enviar el enlace. Esperá unos minutos y volvé a intentar.')}
+async function authResetPassword(password){
+  if(!recoverySession?.access_token||recoverySession.expires_at<=Date.now()){expiredRecovery();throw new Error('El enlace venció. Pedí uno nuevo para continuar.')}
+  const r=await fetch(SUPABASE_URL+'/auth/v1/user',{method:'PUT',headers:headers(false,{Authorization:'Bearer '+recoverySession.access_token}),body:JSON.stringify({password})});
+  const d=await r.json();if(!r.ok){if(r.status===401||r.status===403)expiredRecovery();throw new Error(d.msg||d.message||d.error_description||'No se pudo cambiar la contraseña. Volvé a intentar.')}return d;
+}
 async function refreshSession(){if(!session?.refresh_token)return false;const r=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:headers(),body:JSON.stringify({refresh_token:session.refresh_token})});if(!r.ok)return false;session=await r.json();localStorage.setItem('cej_session',JSON.stringify(session));return true}
 async function request(path,opts={}){let r=await fetch(SUPABASE_URL+path,{...opts,headers:headers(true,opts.headers||{})});if(r.status===401&&await refreshSession())r=await fetch(SUPABASE_URL+path,{...opts,headers:headers(true,opts.headers||{})});let d=null;const txt=await r.text();if(txt){try{d=JSON.parse(txt)}catch{d=txt}}if(!r.ok)throw new Error(d?.message||d?.hint||d?.error_description||String(d)||'Error del servidor');return d}
 async function apiGet(table,query=''){return request('/rest/v1/'+table+(query?'?'+query:''),{method:'GET'})}
@@ -159,7 +210,7 @@ function localToIso(v){return v?new Date(v+':00-03:00').toISOString():null}
 function isoToLocal(v){if(!v)return'';const t=new Intl.DateTimeFormat('sv-SE',{timeZone:'America/Montevideo',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date(v));return t.replace(' ','T')}
 function esc(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
 function showScreen(id){$$('.screen').forEach(x=>x.classList.remove('active'));$('#'+id).classList.add('active');$$('.nav').forEach(x=>x.classList.toggle('active',x.dataset.screen===id));window.scrollTo({top:0,behavior:'instant'})}
-function setAuthMode(v){signupMode=v;$('#tabLogin').classList.toggle('active',!v);$('#tabSignup').classList.toggle('active',v);$('#tabLogin').setAttribute('aria-pressed',String(!v));$('#tabSignup').setAttribute('aria-pressed',String(v));$('#authFormTitle').textContent=v?'Creá tu cuenta con email':'Entrá con tu email';$('#authSubmit').textContent=v?'Crear cuenta con email':'Entrar con email';$('#authEmail').setAttribute('autocomplete',v?'email':'username');$('#authPassword').setAttribute('autocomplete',v?'new-password':'current-password');$('#authPassword').placeholder=v?'Elegí una contraseña':'Tu contraseña de Carnaval en Juego';$('#authPasswordHelp').textContent=v?'Elegí una contraseña para Carnaval en Juego, de al menos 6 caracteres.':'Usá la contraseña de tu cuenta de Carnaval en Juego.';$('#authPassword').type='password';$('#authPasswordToggle').textContent='Mostrar';$('#authPasswordToggle').setAttribute('aria-label','Mostrar contraseña');$('#authPasswordToggle').setAttribute('aria-pressed','false');$('#authConfirmField').classList.toggle('hidden',!v);$('#authPasswordConfirm').disabled=!v;$('#authPasswordConfirm').required=v;$('#authPasswordConfirm').value='';$('#authNotice').classList.add('hidden')}
+function setAuthMode(v){signupMode=v;$('#authForgot').classList.toggle('hidden',v);$('#tabLogin').classList.toggle('active',!v);$('#tabSignup').classList.toggle('active',v);$('#tabLogin').setAttribute('aria-pressed',String(!v));$('#tabSignup').setAttribute('aria-pressed',String(v));$('#authFormTitle').textContent=v?'Creá tu cuenta con email':'Entrá con tu email';$('#authSubmit').textContent=v?'Crear cuenta con email':'Entrar con email';$('#authEmail').setAttribute('autocomplete',v?'email':'username');$('#authPassword').setAttribute('autocomplete',v?'new-password':'current-password');$('#authPassword').placeholder=v?'Elegí una contraseña':'Tu contraseña de Carnaval en Juego';$('#authPasswordHelp').textContent=v?'Elegí una contraseña para Carnaval en Juego, de al menos 6 caracteres.':'Usá la contraseña de tu cuenta de Carnaval en Juego.';$('#authPassword').type='password';$('#authPasswordToggle').textContent='Mostrar';$('#authPasswordToggle').setAttribute('aria-label','Mostrar contraseña');$('#authPasswordToggle').setAttribute('aria-pressed','false');$('#authConfirmField').classList.toggle('hidden',!v);$('#authPasswordConfirm').disabled=!v;$('#authPasswordConfirm').required=v;$('#authPasswordConfirm').value='';$('#authNotice').classList.add('hidden')}
 function renderSelectOptions(){const cats=state.categories.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');$('#ensembleCategory').innerHTML=cats;$('#rubricCategory').innerHTML=cats;$('#profilePrimary').innerHTML='<option value="">No tengo uno</option>'+state.ensembles.map(e=>`<option value="${e.id}">${esc(e.name)}</option>`).join('');$('#performanceParticipant').innerHTML=state.participants.map(p=>{const e=state.ensembles.find(x=>x.id===p.ensemble_id);return `<option value="${p.id}">${esc(e?.name||'Conjunto')}</option>`}).join('')||'<option value="">Sin participantes</option>'}
 // PUBLIC INTERFACE: Previa 2027, fixture, filtros, Fallos y Tus Clasificados.
 let ui={dayIndex:0,conjuntosCat:'all',fallosCat:'all',predCat:null,predTab:'mine',falloId:null,adjustment:0,scores:{}};
@@ -271,8 +322,26 @@ async function loadState(){if(!session?.user)return;try{const [cats,events,round
     apiGet('classification_snapshots','select=ensemble_id,performance_id,snapshot_type,percentage&snapshot_type=eq.pre_performance')
   ]);state.categories=cats||[];state.event=events?.[0]||null;state.round=rounds?.[0]||null;state.ensembles=ens||[];state.participants=parts||[];state.performances=perfs||[];state.rubrics=rubs||[];state.rules=rules||[];state.profile=profiles?.[0]||null;state.follows=follows||[];state.myFallos=fallos||[];state.snapshots=snapshots||[];state.isAdmin=!!admins?.length;
   if(state.round){for(const cat of state.categories){try{const s=await request('/rest/v1/rpc/get_current_selection',{method:'POST',body:JSON.stringify({p_round_id:state.round.id,p_category_id:cat.id})});state.mySelections[cat.id]=(s||[]).map(x=>x.ensemble_id)}catch{state.mySelections[cat.id]=[]}}}if(state.isAdmin){try{state.logs=await apiGet('admin_change_log','select=id,table_name,operation,changed_at&order=changed_at.desc&limit=12')}catch{state.logs=[]}}renderSelectOptions();renderPublic();renderProfile();renderAdmin()}catch(e){toast(e.message)}}
-async function showApp(){if(session?.user){$('#authView').classList.add('hidden');$('#appView').classList.remove('hidden');$('#profileEmail').textContent=session.user.email||'Usuario';await loadState()}else{$('#appView').classList.add('hidden');$('#authView').classList.remove('hidden')}}
+async function showApp(){if(recoveryMode){$('#appView').classList.add('hidden');$('#authView').classList.remove('hidden');return}if(session?.user){$('#authView').classList.add('hidden');$('#appView').classList.remove('hidden');$('#profileEmail').textContent=session.user.email||'Usuario';await loadState()}else{$('#appView').classList.add('hidden');$('#authView').classList.remove('hidden')}}
 async function toggleRubric(id,active){try{await apiPatch('rubrics','id=eq.'+id,{is_active:active});toast(active?'Rubro activado':'Rubro desactivado');await loadState()}catch(e){toast(e.message)}}
+$('#authForgot').onclick=()=>{clearRecoverySession();$('#recoverEmail').value=$('#authEmail').value.trim();showPasswordRecovery()};
+$('#recoveryBack').onclick=()=>{clearRecoverySession();recoveryMode=null;$('#recoveryPanel').classList.add('hidden');$('#authStandard').classList.remove('hidden');$('#resetForm').reset();$('#authPassword').value='';setAuthMode(false);$('#authEmail').focus()};
+$('#recoverForm').onsubmit=async event=>{
+  event.preventDefault();if($('#recoverSubmit').disabled||!$('#recoverForm').reportValidity())return;
+  $('#recoverSubmit').disabled=true;$('#recoverSubmit').textContent='Enviando...';$('#recoveryNotice').classList.add('hidden');
+  try{await authRecover($('#recoverEmail').value.trim());notice($('#recoveryNotice'),'Si hay una cuenta con ese email, te enviaremos un enlace para recuperar tu contraseña. Revisá también la carpeta de spam.','success')}
+  catch(e){notice($('#recoveryNotice'),e.message,'error')}
+  finally{$('#recoverSubmit').disabled=false;$('#recoverSubmit').textContent='Enviar enlace de recuperación'}
+};
+$('#resetPasswordToggle').onclick=()=>{const show=$('#resetPassword').type==='password';$('#resetPassword').type=show?'text':'password';$('#resetPasswordToggle').textContent=show?'Ocultar':'Mostrar';$('#resetPasswordToggle').setAttribute('aria-label',show?'Ocultar nueva contraseña':'Mostrar nueva contraseña');$('#resetPasswordToggle').setAttribute('aria-pressed',String(show))};
+$('#resetForm').onsubmit=async event=>{
+  event.preventDefault();if($('#resetSubmit').disabled||!$('#resetForm').reportValidity())return;
+  const password=$('#resetPassword').value;if(password!==$('#resetPasswordConfirm').value){notice($('#recoveryNotice'),'Las contraseñas no coinciden. Revisalas y volvé a intentar.','error');$('#resetPasswordConfirm').focus();return}
+  $('#resetSubmit').disabled=true;$('#recoveryBack').disabled=true;$('#resetSubmit').textContent='Guardando...';$('#recoveryNotice').classList.add('hidden');
+  try{await authResetPassword(password);const email=recoverySession?.user?.email||'';$('#recoveryBack').onclick();$('#authEmail').value=email;notice($('#authNotice'),'Tu contraseña ya fue actualizada. Entrá con tu email y la nueva contraseña.','success')}
+  catch(e){notice($('#recoveryNotice'),e.message,'error')}
+  finally{$('#resetSubmit').disabled=false;$('#recoveryBack').disabled=false;$('#resetSubmit').textContent='Guardar nueva contraseña'}
+};
 $('#tabLogin').onclick=()=>setAuthMode(false);$('#tabSignup').onclick=()=>setAuthMode(true);$('#googleBtn').onclick=()=>socialLogin('google');
 $('#authPasswordToggle').onclick=()=>{const show=$('#authPassword').type==='password';$('#authPassword').type=show?'text':'password';$('#authPasswordToggle').textContent=show?'Ocultar':'Mostrar';$('#authPasswordToggle').setAttribute('aria-label',show?'Ocultar contraseña':'Mostrar contraseña');$('#authPasswordToggle').setAttribute('aria-pressed',String(show))};
 $('#authForm').onsubmit=async event=>{event.preventDefault();if($('#authSubmit').disabled||!$('#authForm').reportValidity())return;const email=$('#authEmail').value.trim(),password=$('#authPassword').value;if(signupMode&&password!==$('#authPasswordConfirm').value){notice($('#authNotice'),'Las contraseñas no coinciden. Revisalas y volvé a intentar.','error');$('#authPasswordConfirm').focus();return}$('#authNotice').classList.add('hidden');$('#authSubmit').disabled=true;$('#tabLogin').disabled=true;$('#tabSignup').disabled=true;$('#authSubmit').textContent='Procesando...';try{if(signupMode){const d=await authSignup(email,password);if(d.access_token){session=d;localStorage.setItem('cej_session',JSON.stringify(session));await showApp()}else{notice($('#authNotice'),'Revisá tu correo para confirmar el registro. Después podés entrar con tu email y la contraseña que elegiste.','success')}}else{session=await authLogin(email,password);localStorage.setItem('cej_session',JSON.stringify(session));await showApp();toast('Bienvenido')}}catch(e){notice($('#authNotice'),e.message,'error')}finally{$('#authSubmit').disabled=false;$('#tabLogin').disabled=false;$('#tabSignup').disabled=false;$('#authSubmit').textContent=signupMode?'Crear cuenta con email':'Entrar con email'}};
