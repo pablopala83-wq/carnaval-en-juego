@@ -34,6 +34,8 @@
 .auth-forgot{display:block;margin:4px 0 14px auto;min-height:32px;font-size:12px}.auth-back{display:block;min-height:44px;margin:12px auto 0;font-size:13px}.auth-back:disabled{opacity:.6;cursor:wait}
 .authbox :is(input,button):focus-visible{outline:3px solid #1477ff;outline-offset:3px}
 @media(max-width:480px){.auth{padding:22px 14px}.authbox{padding:22px 18px}.authbox h1{font-size:29px}}
+/* Estados y resultados de la comunidad */
+.performance-status{display:inline-flex;border-radius:8px;padding:5px 8px;font-size:10px;font-weight:900;margin-top:7px;background:#eaf3ff;color:#155ca3}.performance-status.suspended{background:#ffe8ed;color:#96273d}.performance-status.rescheduled{background:#fff2c4;color:#725800}.performance-status.completed{background:#e6f7ed;color:#146b42}.performance-note{font-size:11px;line-height:1.45;color:#65768b;margin:6px 0 0}.fixture-side{text-align:right;max-width:115px;flex-shrink:0}.fixture-side .soft-pill{display:block}.fallo-card .row{align-items:flex-start}.fallo-card .badge{flex-shrink:0}.fallo-score-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:12px 0}.fallo-score-tabs .chip{white-space:normal;border-radius:12px;padding:11px 7px}.ranking-card{display:grid;grid-template-columns:30px minmax(0,1fr) auto;align-items:center;gap:10px;background:#fff;color:#172233;border-radius:16px;padding:14px}.ranking-place{font-size:20px;font-weight:1000;color:#7d8da0}.ranking-score{text-align:right;font-size:24px;font-weight:1000;color:#116576}.ranking-score small{display:block;font-size:10px;font-weight:700;color:#728094}.ranking-card .text-link{font-size:12px;text-align:left}.score-comparison{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:15px 0}.score-comparison>div{background:#f0f5fa;border-radius:14px;padding:15px 10px}.score-comparison span{font-size:12px;color:#55677c;display:block}.score-comparison b{font-size:30px;display:block;margin-top:5px}.score-comparison .community-score{background:#e4f8fa;color:#116576}.community-detail h2{font-size:21px;margin:12px 0 4px}.community-detail h3{font-size:16px;margin:22px 0 10px}.rubric-table-wrap{overflow-x:auto}.rubric-table{width:100%;border-collapse:collapse;font-size:11px}.rubric-table th,.rubric-table td{padding:10px 5px;border-bottom:1px solid #e8edf2;text-align:right}.rubric-table th:first-child,.rubric-table td:first-child{text-align:left;min-width:100px}.rubric-table th{font-size:10px;color:#61768a}.distribution-row{display:grid;grid-template-columns:65px 1fr 43px;gap:9px;align-items:center;font-size:12px;margin:12px 0}.distribution-row .progress-track{margin:0}.distribution-row>span:last-child{text-align:right;color:#526b80}.community-detail .notice{line-height:1.5}.fallo-refresh{margin:10px 0;color:#a7d9ff}.community-detail{scroll-margin-top:90px}.screen button:focus-visible{outline:3px solid #1477ff;outline-offset:3px}.stack[aria-busy=true]{opacity:.75}
 </style>
 </head>
 <body>
@@ -85,9 +87,9 @@
   <div id="fixtureList" class="fixture-stack"></div>
   <div class="card dark" style="margin-top:16px"><div class="kicker">Cupos de clasificación</div><p class="muted-light" style="margin:8px 0 14px">Estos son los lugares disponibles por categoría en la Prueba de Admisión.</p><div id="homeQuotas" class="quota-grid"></div></div>
 </section>
-<section id="fallos" class="screen"><h1 class="page-title">Tus Fallos</h1><p class="page-sub">Calificá cada actuación por rubros. El promedio y tu ajuste forman el Fallo final.</p><div id="fallosCategories" class="chip-strip" aria-label="Filtrar por categoría"></div><div id="falloEditor" class="hidden"></div><div id="fallosList" class="stack"></div></section>
+<section id="fallos" class="screen"><h1 class="page-title">Tus Fallos</h1><p class="page-sub">Calificá cada actuación por rubros. El promedio y tu ajuste forman el Fallo final.</p><div class="info-panel" style="margin-bottom:12px">Los Fallos se habilitan después de que cada conjunto haya actuado. Hacé tu propio Fallo para desbloquear los resultados de esa actuación en <strong>La gente</strong>.</div><div class="segmented" role="group" aria-label="Vista de Fallos"><button type="button" id="tabMyFallos" class="active" aria-pressed="true">Mis Fallos</button><button type="button" id="tabFalloCommunity" aria-pressed="false">La gente</button></div><div id="fallosCategories" class="chip-strip" aria-label="Filtrar por categoría"></div><div id="falloEditor" class="hidden"></div><div id="fallosList" class="stack"></div><div id="falloCommunityView" class="hidden"><div class="fallo-score-tabs" id="falloRankingModes" role="group" aria-label="Tipo de ranking"></div><p id="falloRankingDescription" class="muted-light"></p><div id="falloCommunityDetail" class="hidden community-detail" aria-live="polite"></div><div id="falloRankingList" class="stack" aria-live="polite"></div><button type="button" class="text-link fallo-refresh" id="refreshFalloCommunity">Actualizar resultados</button><p class="muted-light">Solo se muestran estadísticas agregadas. Los Fallos de otras personas y sus identidades son privados.</p></div></section>
 <section id="conjuntos" class="screen"><h1 class="page-title">Conjuntos</h1><p class="page-sub">Los 34 conjuntos que participan de la Admisión. Marcá los que querés seguir.</p><div id="ensembleCategories" class="chip-strip" aria-label="Filtrar por categoría"></div><div id="ensembleList" class="stack"></div></section>
-<section id="clasificados" class="screen"><h1 class="page-title">Tus Clasificados</h1><p id="predictionSub" class="page-sub">Elegí quiénes pasan a Carnaval.</p><div class="segmented"><button id="tabMyPredictions" class="active">Mi selección</button><button id="tabCommunity">La gente</button></div><div id="predictionCategories" class="chip-strip" aria-label="Categoría de pronóstico"></div><div id="predictionList"></div></section>
+<section id="clasificados" class="screen"><h1 class="page-title">Tus Clasificados</h1><p id="predictionSub" class="page-sub">Elegí quiénes pasan a Carnaval.</p><div class="info-panel" style="margin-bottom:12px">Podés cambiar tus Clasificados todas las veces que quieras mientras la ronda esté abierta. Recordá guardar cada cambio.</div><div class="segmented"><button id="tabMyPredictions" class="active">Mi selección</button><button id="tabCommunity">La gente</button></div><div id="predictionCategories" class="chip-strip" aria-label="Categoría de pronóstico"></div><div id="predictionList"></div></section>
 <section id="perfil" class="screen"><h1 class="page-title">Perfil</h1><p class="page-sub">Tu cuenta y preferencias de Carnaval en Juego.</p>
   <div class="card">
     <div class="title" id="profileEmail"></div><div class="meta" style="margin-top:5px">Cuenta autenticada</div>
@@ -213,7 +215,19 @@ function showScreen(id){$$('.screen').forEach(x=>x.classList.remove('active'));$
 function setAuthMode(v){signupMode=v;$('#authForgot').classList.toggle('hidden',v);$('#tabLogin').classList.toggle('active',!v);$('#tabSignup').classList.toggle('active',v);$('#tabLogin').setAttribute('aria-pressed',String(!v));$('#tabSignup').setAttribute('aria-pressed',String(v));$('#authFormTitle').textContent=v?'Creá tu cuenta con email':'Entrá con tu email';$('#authSubmit').textContent=v?'Crear cuenta con email':'Entrar con email';$('#authEmail').setAttribute('autocomplete',v?'email':'username');$('#authPassword').setAttribute('autocomplete',v?'new-password':'current-password');$('#authPassword').placeholder=v?'Elegí una contraseña':'Tu contraseña de Carnaval en Juego';$('#authPasswordHelp').textContent=v?'Elegí una contraseña para Carnaval en Juego, de al menos 6 caracteres.':'Usá la contraseña de tu cuenta de Carnaval en Juego.';$('#authPassword').type='password';$('#authPasswordToggle').textContent='Mostrar';$('#authPasswordToggle').setAttribute('aria-label','Mostrar contraseña');$('#authPasswordToggle').setAttribute('aria-pressed','false');$('#authConfirmField').classList.toggle('hidden',!v);$('#authPasswordConfirm').disabled=!v;$('#authPasswordConfirm').required=v;$('#authPasswordConfirm').value='';$('#authNotice').classList.add('hidden')}
 function renderSelectOptions(){const cats=state.categories.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('');$('#ensembleCategory').innerHTML=cats;$('#rubricCategory').innerHTML=cats;$('#profilePrimary').innerHTML='<option value="">No tengo uno</option>'+state.ensembles.map(e=>`<option value="${e.id}">${esc(e.name)}</option>`).join('');$('#performanceParticipant').innerHTML=state.participants.map(p=>{const e=state.ensembles.find(x=>x.id===p.ensemble_id);return `<option value="${p.id}">${esc(e?.name||'Conjunto')}</option>`}).join('')||'<option value="">Sin participantes</option>'}
 // PUBLIC INTERFACE: Previa 2027, fixture, filtros, Fallos y Tus Clasificados.
-let ui={dayIndex:0,conjuntosCat:'all',fallosCat:'all',predCat:null,predTab:'mine',falloId:null,adjustment:0,scores:{}};
+let ui={dayIndex:0,conjuntosCat:'all',fallosCat:'all',fallosTab:'mine',falloRankingMode:'reliable_average',communityPerformanceId:null,predCat:null,predTab:'mine',falloId:null,adjustment:0,scores:{}};
+let falloCommunity={rankings:{},details:{}},falloCommunityEpoch=0,stateUserId=null;
+function resetFalloCommunity(){falloCommunityEpoch++;falloCommunity={rankings:{},details:{}};$('#falloRankingList').innerHTML='';$('#falloCommunityDetail').innerHTML='';$('#falloCommunityDetail').classList.add('hidden')}
+const FALLO_RANKING_MODES=[
+  {key:'reliable_average',label:'Fallo Confiable',description:'Ranking principal: pondera la confianza y, desde 7 Fallos, limita el efecto de los puntajes extremos.'},
+  {key:'popular_average',label:'Popular',description:'Promedio de todos los Fallos recibidos en cada actuación.'},
+  {key:'neutral_average',label:'Neutral',description:'Promedio de quienes no declararon a ese conjunto como su principal.'},
+  {key:'fans_average',label:'Hinchas',description:'Promedio de quienes declararon a ese conjunto como su principal.'}
+];
+function performanceStatus(p){return ({scheduled:'Programada',suspended:'Suspendida',rescheduled:'Reprogramada',completed:'Finalizada'})[p.status]||'Pendiente'}
+function performanceBadge(p){const type=['scheduled','suspended','rescheduled','completed'].includes(p.status)?p.status:'scheduled';return `<span class="performance-status ${type}">${performanceStatus(p)}</span>`}
+function performanceDate(p){return p.scheduled_at?esc(uyDay(p.scheduled_at)+' · '+uyTime(p.scheduled_at)):'Fecha a confirmar'}
+function performanceNote(p){return p.status==='suspended'?`<p class="performance-note">${esc(p.suspension_reason||'Esperando nueva fecha. Los Fallos permanecen cerrados.')}</p>`:p.status==='rescheduled'?`<p class="performance-note">Nueva fecha: ${performanceDate(p)}${p.original_scheduled_at?' · Antes: '+esc(uyDay(p.original_scheduled_at)+' · '+uyTime(p.original_scheduled_at)):''}</p>`:''}
 function uyPart(d,type){return new Intl.DateTimeFormat('es-UY',{timeZone:'America/Montevideo',weekday:'short',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date(d)).find(p=>p.type===type)?.value||''}
 function uyDateKey(d){return [uyPart(d,'year'),uyPart(d,'month'),uyPart(d,'day')].join('-')}
 function uyDay(d){return uyPart(d,'weekday').replace('.','')+' '+uyPart(d,'day')+'/'+uyPart(d,'month')}
@@ -231,7 +245,7 @@ function showHome(){
   $('#homeCountEnsembles').textContent=eventParts().length;$('#homeCountDays').textContent=days.length;$('#homeCountQuotas').textContent=state.categories.reduce((n,c)=>n+quotaOf(c),0);
   $('#homeEventStatus').textContent=state.event?.status==='open'?'Abierto':state.event?.status==='closed'?'Cerrado':'Preparación';
   $('#fixtureDays').innerHTML=days.map((date,i)=>{const first=p.find(x=>uyDateKey(x.p.scheduled_at)===date);return `<button type="button" class="date-tab ${ui.dayIndex===i?'active':''}" data-fixture-day="${i}" role="tab" aria-selected="${ui.dayIndex===i}">${esc(uyPart(first.p.scheduled_at,'weekday').replace('.',''))}<strong>${esc(uyPart(first.p.scheduled_at,'day'))}</strong></button>`}).join('');
-  $('#fixtureList').innerHTML=(p.filter(x=>uyDateKey(x.p.scheduled_at)===days[ui.dayIndex]).map(x=>`<div class="fixture-row"><div class="fixture-time">${uyTime(x.p.scheduled_at)}</div><div class="fixture-info"><strong>${esc(x.e.name)}</strong><small><span class="category-dot ${esc(x.c.slug)}"></span>${esc(categoryName(x.c))}</small></div><span class="soft-pill">${esc(x.p.stage_label||'')}</span></div>`).join(''))||'<div class="info-panel">Todavía no hay actuaciones cargadas.</div>';
+  $('#fixtureList').innerHTML=(p.filter(x=>uyDateKey(x.p.scheduled_at)===days[ui.dayIndex]).map(x=>`<div class="fixture-row"><div class="fixture-time">${uyTime(x.p.scheduled_at)}</div><div class="fixture-info"><strong>${esc(x.e.name)}</strong><small><span class="category-dot ${esc(x.c.slug)}"></span>${esc(categoryName(x.c))}</small>${performanceNote(x.p)}</div><div class="fixture-side">${x.p.stage_label?`<span class="soft-pill">${esc(x.p.stage_label)}</span>`:''}${performanceBadge(x.p)}</div></div>`).join(''))||'<div class="info-panel">Todavía no hay actuaciones cargadas.</div>';
   $('#homeQuotas').innerHTML=state.categories.map(c=>`<div class="quota-stat"><span>${esc(categoryName(c))}</span><b>${quotaOf(c)}</b><em>cupos</em></div>`).join('');
   $$('#fixtureDays [data-fixture-day]').forEach(b=>b.onclick=()=>{ui.dayIndex=Number(b.dataset.fixtureDay);showHome()});
 }
@@ -246,29 +260,131 @@ function renderConjuntos(){
   $('#ensembleList').innerHTML=rows.map(x=>{
     const cat=state.categories.find(c=>c.id===x.e.category_id),p=allPerformances().find(y=>y.e.id===x.e.id),isFollowed=state.follows.some(f=>f.ensemble_id===x.e.id);
     const snapshot=state.snapshots.find(s=>s.ensemble_id===x.e.id&&s.performance_id===p?.p.id&&s.snapshot_type==='pre_performance');
-    return `<div class="ensemble-card"><div class="row"><div class="list-main"><div class="list-title">${esc(x.e.name)}</div><div class="list-meta"><span class="category-dot ${esc(cat?.slug||'')}"></span>${esc(categoryName(cat))}${p?' · '+uyDay(p.p.scheduled_at)+' · '+uyTime(p.p.scheduled_at):''}</div></div><button type="button" class="follow ${isFollowed?'selected':''}" data-follow="${x.e.id}" aria-label="${isFollowed?'Dejar de seguir':'Seguir'} ${esc(x.e.name)}">${isFollowed?'★ Siguiendo':'☆ Seguir'}</button></div>${snapshot?`<span class="card-badge">Antes de actuar · ${Number(snapshot.percentage).toFixed(1)}%</span>`:''}</div>`
+    return `<div class="ensemble-card"><div class="row"><div class="list-main"><div class="list-title">${esc(x.e.name)}</div><div class="list-meta"><span class="category-dot ${esc(cat?.slug||'')}"></span>${esc(categoryName(cat))}${p?' · '+performanceDate(p.p):''}</div>${p?performanceBadge(p.p)+performanceNote(p.p):''}</div><button type="button" class="follow ${isFollowed?'selected':''}" data-follow="${x.e.id}" aria-label="${isFollowed?'Dejar de seguir':'Seguir'} ${esc(x.e.name)}">${isFollowed?'★ Siguiendo':'☆ Seguir'}</button></div>${snapshot?`<span class="card-badge">Antes de actuar · ${Number(snapshot.percentage).toFixed(1)}%</span>`:''}</div>`
   }).join('')||'<div class="info-panel">No hay conjuntos en esta categoría.</div>';
   $$('#ensembleCategories [data-ensemble-cat]').forEach(b=>b.onclick=()=>{ui.conjuntosCat=b.dataset.ensembleCat;renderConjuntos()});
   $$('#ensembleList [data-follow]').forEach(b=>b.onclick=()=>toggleFollow(b.dataset.follow));
 }
-function falloIsOpen(p){return p.status==='completed'||Boolean(p.fallos_open_at&&new Date(p.fallos_open_at)<=new Date())}
+function falloIsOpen(p){if(!p||p.status==='suspended')return false;if(p.status==='completed')return true;if(!['scheduled','rescheduled'].includes(p.status))return false;const opens=p.fallos_open_at||p.scheduled_end_at;const now=Date.now();return Boolean(opens&&Date.parse(opens)<=now&&(!p.scheduled_at||Date.parse(p.scheduled_at)<=now)&&(!p.scheduled_end_at||Date.parse(p.scheduled_end_at)<=now))}
 function renderFallos(){
   $('#fallosCategories').innerHTML=uiCategories(ui.fallosCat,'fallo-cat',true);
   const rows=allPerformances().filter(x=>ui.fallosCat==='all'||x.c.id===ui.fallosCat);
-  const now=Date.now();
+  const community=ui.fallosTab==='community';
+  $('#tabMyFallos').classList.toggle('active',!community);$('#tabMyFallos').setAttribute('aria-pressed',String(!community));
+  $('#tabFalloCommunity').classList.toggle('active',community);$('#tabFalloCommunity').setAttribute('aria-pressed',String(community));
+  $('#fallosList').classList.toggle('hidden',community);$('#falloCommunityView').classList.toggle('hidden',!community);
+  if(community){$('#falloEditor').classList.add('hidden');renderFalloCommunity()}
   $('#fallosList').innerHTML=rows.map(x=>{
-    const own=state.myFallos.find(f=>f.performance_id===x.p.id),opened=falloIsOpen(x.p),rubs=state.rubrics.filter(r=>r.is_active&&r.category_id===x.c.id);
-    const availability=own?`<span class="badge good">Tu Fallo ${Number(own.final_score).toFixed(2)}</span>`:opened?'<span class="badge good">Disponible</span>':`<span class="soft-pill">${new Date(x.p.scheduled_at)>now?'Próximamente':'No habilitado'}</span>`;
-    return `<div class="fallo-card"><div class="row"><div class="list-main"><div class="list-title">${esc(x.e.name)}</div><div class="list-meta">${esc(categoryName(x.c))} · ${uyDay(x.p.scheduled_at)} · ${uyTime(x.p.scheduled_at)}</div></div>${availability}</div>${opened&&!own&&rubs.length?`<button type="button" class="text-link" data-open-fallo="${x.p.id}">Hacer mi Fallo →</button>`:''}${opened&&!own&&!rubs.length?'<p class="tiny-muted">Pendiente de configurar rubros para esta categoría.</p>':''}</div>`
+    const own=ownFallo(x.p.id),opened=falloIsOpen(x.p),rubs=state.rubrics.filter(r=>r.is_active&&r.category_id===x.c.id);
+    const availability=own?`<span class="badge good">Tu Fallo ${Number(own.final_score).toFixed(2)}</span>`:opened?'<span class="badge good">Disponible</span>':`<span class="soft-pill">${x.p.status==='suspended'?'Esperando nueva fecha':'Después de actuar'}</span>`;
+    return `<div class="fallo-card"><div class="row"><div class="list-main"><div class="list-title">${esc(x.e.name)}</div><div class="list-meta">${esc(categoryName(x.c))} · ${performanceDate(x.p)}</div>${performanceBadge(x.p)}${performanceNote(x.p)}</div>${availability}</div>${own?`<button type="button" class="text-link" data-fallo-detail="${x.p.id}">Tu Fallo vs. La gente →</button>`:''}${opened&&!own&&rubs.length?`<button type="button" class="text-link" data-open-fallo="${x.p.id}">Hacer mi Fallo →</button>`:''}${opened&&!own&&!rubs.length?'<p class="tiny-muted">Pendiente de configurar rubros para esta categoría.</p>':''}</div>`
   }).join('')||'<div class="info-panel">No se encontraron actuaciones.</div>';
-  $$('#fallosCategories [data-fallo-cat]').forEach(b=>b.onclick=()=>{ui.fallosCat=b.dataset.falloCat;ui.falloId=null;$('#falloEditor').classList.add('hidden');renderFallos()});
-  $$('#fallosList [data-open-fallo]').forEach(b=>b.onclick=()=>{ui.falloId=b.dataset.openFallo;ui.adjustment=0;ui.scores={};renderFalloEditor();$('#falloEditor').scrollIntoView({behavior:'smooth',block:'start'})});
+  $$('#fallosCategories [data-fallo-cat]').forEach(b=>b.onclick=()=>{ui.fallosCat=b.dataset.falloCat;ui.communityPerformanceId=null;ui.falloId=null;$('#falloEditor').classList.add('hidden');renderFallos()});
+  $$('#fallosList [data-open-fallo]').forEach(b=>b.onclick=()=>{openFallo(b.dataset.openFallo)});
+  $$('#fallosList [data-fallo-detail]').forEach(b=>b.onclick=()=>openFalloCommunity(b.dataset.falloDetail));
 }
+function openFallo(id){
+  const info=allPerformances().find(x=>x.p.id===id);
+  if(!session?.user||!info||!falloIsOpen(info.p)||state.myFallos.some(f=>f.performance_id===id))return;
+  ui.fallosTab='mine';ui.falloId=id;ui.adjustment=0;ui.scores={};renderFallos();renderFalloEditor();$('#falloEditor').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function ownFallo(id){return session?.user&&stateUserId===session.user.id&&state.myFallos.find(f=>f.performance_id===id)}
+function aggregateNumber(value){return value!==null&&value!==undefined&&value!==''&&typeof value!=='boolean'&&Number.isFinite(Number(value))?Number(value):null}
+function falloScore(value){const n=aggregateNumber(value);return n===null?'—':n.toLocaleString('es-UY',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function aggregateScores(row){return Object.fromEntries(['reliable_average','popular_average','neutral_average','fans_average'].map(k=>[k,aggregateNumber(row[k])]))}
+function unlockedPerformances(){return allPerformances().filter(x=>ownFallo(x.p.id)&&(ui.fallosCat==='all'||x.c.id===ui.fallosCat))}
+function communityCategories(){return [...new Set(unlockedPerformances().map(x=>x.c.id))]}
+async function fetchFalloRanking(category){
+  if(!session?.user||!communityCategories().includes(category)||falloCommunity.rankings[category])return;
+  const epoch=falloCommunityEpoch,user=session.user.id;
+  falloCommunity.rankings[category]={status:'loading',rows:[]};
+  try{
+    const rows=await request('/rest/v1/rpc/get_unlocked_fallo_ranking',{method:'POST',body:JSON.stringify({p_category_id:category})});
+    if(epoch!==falloCommunityEpoch||session?.user?.id!==user)return;
+    // Allow only known, personally unlocked performances; never retain individual records.
+    const allowed=allPerformances().filter(x=>x.c.id===category&&ownFallo(x.p.id));
+    falloCommunity.rankings[category]={status:'ready',rows:(Array.isArray(rows)?rows:[]).filter(row=>allowed.some(x=>x.p.id===row.performance_id)).map(row=>({performance_id:row.performance_id,total_fallos:Math.max(0,aggregateNumber(row.total_fallos)||0),...aggregateScores(row)}))};
+  }catch{if(epoch!==falloCommunityEpoch||session?.user?.id!==user)return;falloCommunity.rankings[category]={status:'error',rows:[]}}
+  if(ui.fallosTab==='community')renderFalloCommunity();
+}
+function renderFalloCommunity(){
+  const mode=FALLO_RANKING_MODES.find(m=>m.key===ui.falloRankingMode)||FALLO_RANKING_MODES[0];
+  $('#falloRankingModes').innerHTML=FALLO_RANKING_MODES.map(m=>`<button type="button" class="chip ${mode.key===m.key?'active':''}" data-ranking-mode="${m.key}" aria-pressed="${mode.key===m.key}">${m.label}</button>`).join('');
+  $('#falloRankingDescription').textContent=mode.description+' Se ordenan solo las actuaciones para las que ya hiciste tu Fallo; no es el ranking completo de la categoría.';
+  const root=$('#falloRankingList'),unlocked=unlockedPerformances(),cats=communityCategories();
+  const loading=cats.some(c=>!falloCommunity.rankings[c]||falloCommunity.rankings[c].status==='loading');
+  const errors=cats.some(c=>falloCommunity.rankings[c]?.status==='error');
+  root.setAttribute('aria-busy',String(loading));
+  let html=loading?'<div class="info-panel" role="status">Cargando resultados de La gente…</div>':'';
+  if(errors)html+='<div class="warning-inline" role="alert">No se pudieron cargar algunos resultados. Tocá «Actualizar resultados» para reintentar.</div>';
+  for(const cat of state.categories.filter(c=>ui.fallosCat==='all'||c.id===ui.fallosCat)){
+    const ranking=falloCommunity.rankings[cat.id];
+    const rows=(ranking?.rows||[]).filter(r=>ownFallo(r.performance_id)&&unlocked.some(x=>x.p.id===r.performance_id)).map(r=>({...r,info:unlocked.find(x=>x.p.id===r.performance_id)})).sort((a,b)=>{
+      const av=a[mode.key],bv=b[mode.key];return av===null?(bv===null?a.info.e.name.localeCompare(b.info.e.name,'es'):1):bv===null?-1:bv-av||a.info.e.name.localeCompare(b.info.e.name,'es');
+    });
+    if(!rows.length)continue;
+    html+=`<div class="category-heading" style="margin-top:12px"><h2>${esc(categoryName(cat))}</h2><span>${rows.length} desbloqueada${rows.length===1?'':'s'}</span></div>`;
+    let place=0,previous=null;
+    html+=rows.map((r,i)=>{if(r[mode.key]!==previous){place=i+1;previous=r[mode.key]}return `<div class="ranking-card"><span class="ranking-place">${r[mode.key]===null?'—':place}</span><div class="list-main"><div class="list-title">${esc(r.info.e.name)}</div><div class="list-meta">${performanceDate(r.info.p)} · ${r.total_fallos} Fallos</div>${performanceBadge(r.info.p)}<div class="list-meta">Tu Fallo: ${falloScore(ownFallo(r.performance_id)?.final_score)}</div><button type="button" class="text-link" data-community-detail="${esc(r.performance_id)}">Comparar y ver rubros →</button></div><div class="ranking-score">${falloScore(r[mode.key])}<small>${r[mode.key]===null?'Sin datos':mode.label}</small></div></div>`}).join('');
+  }
+  if(!unlocked.length)html+='<div class="info-panel"><strong>Primero, tu opinión.</strong> Hacé tu Fallo después de cada actuación para ver cómo la calificó la comunidad. Cada actuación se desbloquea por separado.</div>';
+  else if(!loading&&!errors&&!cats.some(c=>falloCommunity.rankings[c]?.rows.length))html+='<div class="info-panel">Todavía no hay resultados disponibles para tus actuaciones desbloqueadas.</div>';
+  const locked=allPerformances().filter(x=>(ui.fallosCat==='all'||x.c.id===ui.fallosCat)&&!ownFallo(x.p.id));
+  if(locked.length)html+='<h3 style="font-size:16px;margin-bottom:3px">Por desbloquear</h3>'+locked.map(x=>`<div class="fallo-card"><div class="list-title">${esc(x.e.name)}</div><div class="list-meta">${esc(categoryName(x.c))} · ${performanceDate(x.p)}</div>${performanceBadge(x.p)}${performanceNote(x.p)}<p class="tiny-muted">Hacé tu Fallo para desbloquear lo que opinó la gente.</p>${falloIsOpen(x.p)?`<button type="button" class="text-link" data-unlock-fallo="${esc(x.p.id)}">Hacer mi Fallo →</button>`:'<span class="soft-pill">Disponible después de actuar</span>'}</div>`).join('');
+  root.innerHTML=html||'<div class="info-panel">No se encontraron actuaciones.</div>';
+  $$('#falloRankingModes [data-ranking-mode]').forEach(b=>b.onclick=()=>{ui.falloRankingMode=b.dataset.rankingMode;renderFalloCommunity()});
+  $$('#falloRankingList [data-community-detail]').forEach(b=>b.onclick=()=>openFalloCommunity(b.dataset.communityDetail));
+  $$('#falloRankingList [data-unlock-fallo]').forEach(b=>b.onclick=()=>openFallo(b.dataset.unlockFallo));
+  $('#refreshFalloCommunity').disabled=loading;
+  renderFalloCommunityDetail();
+  cats.filter(c=>!falloCommunity.rankings[c]).forEach(fetchFalloRanking);
+}
+async function openFalloCommunity(id){
+  if(!ownFallo(id)||!allPerformances().some(x=>x.p.id===id))return;
+  ui.communityPerformanceId=id;ui.fallosTab='community';renderFallos();
+  $('#falloCommunityDetail').scrollIntoView({behavior:'smooth',block:'start'});
+  await fetchFalloDetail(id);
+}
+async function fetchFalloDetail(id){
+  if(!ownFallo(id)||falloCommunity.details[id])return;
+  const epoch=falloCommunityEpoch,user=session.user.id;
+  falloCommunity.details[id]={status:'loading'};renderFalloCommunityDetail();
+  try{
+    const data=await request('/rest/v1/rpc/get_fallo_community',{method:'POST',body:JSON.stringify({p_performance_id:id})});
+    if(epoch!==falloCommunityEpoch||session?.user?.id!==user||!ownFallo(id))return;
+    if(data?.unlocked!==true){falloCommunity.details[id]={status:'locked'}}
+    else{
+      const distribution=Object.fromEntries(['1_3_5','4_5_5','6_7_5','8_8_5','9_10'].map(k=>[k,Math.max(0,aggregateNumber(data.distribution?.[k])||0)]));
+      falloCommunity.details[id]={status:'ready',data:{...aggregateScores(data),total_fallos:Math.max(0,aggregateNumber(data.total_fallos)||0),median:aggregateNumber(data.median),distribution,rubrics:(Array.isArray(data.rubrics)?data.rubrics:[]).map(r=>({label:String(r.label||''),...aggregateScores(r)}))}};
+    }
+  }catch{if(epoch!==falloCommunityEpoch||session?.user?.id!==user)return;falloCommunity.details[id]={status:'error'}}
+  if(ui.fallosTab==='community'&&ui.communityPerformanceId===id)renderFalloCommunityDetail();
+}
+function renderFalloCommunityDetail(){
+  const root=$('#falloCommunityDetail'),id=ui.communityPerformanceId,own=ownFallo(id),info=allPerformances().find(x=>x.p.id===id);
+  if(!own||!info||(ui.fallosCat!=='all'&&ui.fallosCat!==info.c.id)){root.innerHTML='';root.classList.add('hidden');return}
+  root.classList.remove('hidden');const entry=falloCommunity.details[id];
+  const heading=`<div class="card"><button type="button" class="text-link" id="closeFalloDetail">Cerrar detalle</button><h2>${esc(info.e.name)}</h2><p class="tiny-muted">${esc(categoryName(info.c))} · ${performanceDate(info.p)}</p>`;
+  if(!entry||entry.status==='loading')root.innerHTML=heading+'<p role="status">Cargando comparación…</p></div>';
+  else if(entry.status==='locked')root.innerHTML=heading+'<p>Hacé tu Fallo para desbloquear lo que opinó la gente.</p></div>';
+  else if(entry.status==='error')root.innerHTML=heading+'<p role="alert">No se pudo cargar la comparación.</p><button type="button" class="text-link" id="retryFalloDetail">Reintentar</button></div>';
+  else{
+    const d=entry.data,mode=FALLO_RANKING_MODES.find(m=>m.key===ui.falloRankingMode)||FALLO_RANKING_MODES[0],avg=d[mode.key];
+    const difference=avg===null?null:Number(own.final_score)-avg;
+    root.innerHTML=heading+`<div class="score-comparison"><div><span>Tu Fallo</span><b>${falloScore(own.final_score)}</b></div><div class="community-score"><span>${mode.label}</span><b>${falloScore(avg)}</b></div></div><p class="tiny-muted">${difference===null?'Sin datos para este promedio.':Math.abs(difference)<.005?'Tu Fallo coincide con este promedio.':`Tu Fallo está ${falloScore(Math.abs(difference))} puntos ${difference>0?'por encima':'por debajo'} de este promedio.`}</p><div class="admin-summary">${FALLO_RANKING_MODES.map(m=>`<div class="metric"><span>${m.label}</span><strong style="margin-top:8px;font-size:22px">${falloScore(d[m.key])}</strong></div>`).join('')}</div><p class="tiny-muted">${d.total_fallos} Fallos · Mediana: ${falloScore(d.median)}. «—» indica que no hay datos para ese grupo.</p><h3>Promedios por rubro</h3>${d.rubrics.length?`<div class="rubric-table-wrap"><table class="rubric-table"><caption class="tiny-muted" style="text-align:left;padding-bottom:8px">Puntajes por rubro, antes del ajuste final</caption><thead><tr><th scope="col">Rubro</th><th scope="col">Confiable</th><th scope="col">Popular</th><th scope="col">Neutral</th></tr></thead><tbody>${d.rubrics.map(r=>`<tr><th scope="row">${esc(r.label)}</th><td>${falloScore(r.reliable_average)}</td><td>${falloScore(r.popular_average)}</td><td>${falloScore(r.neutral_average)}</td></tr>`).join('')}</tbody></table></div>`:'<p class="tiny-muted">Todavía no hay promedios por rubro.</p>'}<h3>Distribución de Fallos</h3><p class="tiny-muted">Porcentaje de Fallos finales en cada rango.</p>${[['1_3_5','1 a &lt;4'],['4_5_5','4 a &lt;6'],['6_7_5','6 a &lt;8'],['8_8_5','8 a &lt;9'],['9_10','9 a 10']].map(([key,label])=>{const percent=d.total_fallos?Math.min(100,100*d.distribution[key]/d.total_fallos):0;return `<div class="distribution-row"><span>${label}</span><div class="progress-track"><div class="progress-bar" style="width:${percent}%"></div></div><span>${percent.toLocaleString('es-UY',{maximumFractionDigits:1})}%</span></div>`}).join('')}</div>`;
+  }
+  $('#closeFalloDetail').onclick=()=>{ui.communityPerformanceId=null;renderFalloCommunityDetail()};
+  if($('#retryFalloDetail'))$('#retryFalloDetail').onclick=()=>{delete falloCommunity.details[id];fetchFalloDetail(id)};
+  if(!entry)fetchFalloDetail(id);
+}
+$('#tabMyFallos').onclick=()=>{ui.fallosTab='mine';renderFallos()};
+$('#tabFalloCommunity').onclick=()=>{ui.fallosTab='community';ui.falloId=null;renderFallos()};
+$('#refreshFalloCommunity').onclick=()=>{resetFalloCommunity();renderFalloCommunity()};
 function scoreOptions(v){return ['<option value="">Elegí</option>'].concat(Array.from({length:19},(_,i)=>{let n=1+i*.5;return `<option value="${n}" ${String(v)===String(n)?'selected':''}>${n.toFixed(1)}</option>`})).join('')}
 function falloMean(rubs){if(!rubs.length||rubs.some(r=>ui.scores[r.id]==null))return null;const weight=rubs.reduce((s,r)=>s+Number(r.weight),0);return rubs.reduce((s,r)=>s+Number(ui.scores[r.id])*Number(r.weight),0)/weight}
 function renderFalloEditor(){
   const root=$('#falloEditor'),info=allPerformances().find(x=>x.p.id===ui.falloId);
-  if(!info){root.classList.add('hidden');return}
+  if(!info||!falloIsOpen(info.p)||!session?.user||state.myFallos.some(f=>f.performance_id===info.p.id)){root.classList.add('hidden');return}
   const rubs=state.rubrics.filter(r=>r.category_id===info.c.id&&r.is_active).sort((a,b)=>a.sort_order-b.sort_order);
   const base=falloMean(rubs),total=base===null?null:base+ui.adjustment;
   root.classList.remove('hidden');root.innerHTML=`<div class="fallo-editor"><div class="kicker" style="color:#386f9c">TU FALLO · ${esc(categoryName(info.c))}</div><h2>${esc(info.e.name)}</h2><p class="tiny-muted">Puntúa cada rubro del 1 al 10, en pasos de 0,5. Tu Fallo queda registrado al enviarlo y no se puede editar.</p>${rubs.map(r=>`<div class="score-row"><label for="score-${r.id}">${esc(r.label)}</label><select id="score-${r.id}" data-rubric-score="${r.id}">${scoreOptions(ui.scores[r.id])}</select></div>`).join('')}<div style="padding-top:12px;font-size:12px;font-weight:900">Ajuste manual</div><div class="adjust-buttons">${[-.5,0,.5].map(v=>`<button type="button" data-adjust="${v}" class="${ui.adjustment===v?'active':''}">${v===0?'Sin ajuste':v>0?'+0,5':'−0,5'}</button>`).join('')}</div><div class="total-fallo"><div><div class="list-title">Fallo final</div><div class="tiny-muted">Promedio de rubros + ajuste</div></div><b id="falloTotal">${total===null?'—':total.toFixed(2)}</b></div><div class="fallo-actions"><button class="border-btn" id="cancelFallo">Cancelar</button><button class="cta" id="submitFallo" ${total===null||total<1||total>10?'disabled':''}>Guardar Fallo</button></div></div>`;
@@ -278,9 +394,9 @@ function renderFalloEditor(){
   $('#submitFallo').onclick=submitFalloCurrent;
 }
 async function submitFalloCurrent(){
-  const info=allPerformances().find(x=>x.p.id===ui.falloId);if(!info)return;
+  const info=allPerformances().find(x=>x.p.id===ui.falloId);if(!info||!falloIsOpen(info.p)||state.myFallos.some(f=>f.performance_id===info.p.id))return;
   const btn=$('#submitFallo');btn.disabled=true;
-  try{await request('/rest/v1/rpc/submit_fallo',{method:'POST',body:JSON.stringify({p_performance_id:info.p.id,p_scores:ui.scores,p_adjustment:ui.adjustment})});toast('¡Fallo guardado!');ui.falloId=null;$('#falloEditor').classList.add('hidden');await loadState()}
+  try{await request('/rest/v1/rpc/submit_fallo',{method:'POST',body:JSON.stringify({p_performance_id:info.p.id,p_scores:ui.scores,p_adjustment:ui.adjustment})});toast('¡Fallo guardado!');ui.falloId=null;ui.communityPerformanceId=info.p.id;ui.fallosTab='community';$('#falloEditor').classList.add('hidden');await loadState()}
   catch(e){toast(e.message);btn.disabled=false}
 }
 function canSavePrediction(){const r=state.round;if(!r||r.status!=='open')return false;const t=Date.now();return (!r.opens_at||t>=Date.parse(r.opens_at))&&(!r.closes_at||t<Date.parse(r.closes_at))}
@@ -315,13 +431,13 @@ function renderAdmin(){if(!state.isAdmin)return;$('#metricEnsembles').textConten
   $$('.rubricToggle').forEach(b=>b.onclick=()=>toggleRubric(b.dataset.id,b.dataset.active!=='true'));
   $('#adminLogList').innerHTML=state.logs.length?state.logs.map(l=>`<div class="list-row"><div class="list-main"><div class="list-title">${esc(l.operation)} · ${esc(l.table_name)}</div><div class="list-meta">${new Date(l.changed_at).toLocaleString('es-UY',{timeZone:'America/Montevideo'})}</div></div></div>`).join(''):'<div class="empty">Sin cambios todavía.</div>';
 }
-async function loadState(){if(!session?.user)return;try{const [cats,events,rounds,ens,parts,perfs,rubs,rules,profiles,admins,follows,fallos,snapshots]=await Promise.all([
+async function loadState(){if(!session?.user)return;const userId=session.user.id;resetFalloCommunity();const loadEpoch=falloCommunityEpoch;stateUserId=null;try{const [cats,events,rounds,ens,parts,perfs,rubs,rules,profiles,admins,follows,fallos,snapshots]=await Promise.all([
     apiGet('categories','select=*&order=sort_order.asc'),apiGet('events','select=*&slug=eq.prueba-admision&limit=1'),apiGet('prediction_rounds','select=*&slug=eq.clasificados-admision&limit=1'),apiGet('ensembles','select=*&order=name.asc'),apiGet('event_participants','select=*&order=sort_order.asc'),apiGet('performances','select=*&order=scheduled_at.asc'),apiGet('rubrics','select=*&order=sort_order.asc'),apiGet('prediction_round_category_rules','select=*'),apiGet('profiles','select=*&user_id=eq.'+session.user.id),apiGet('admin_users','select=user_id&user_id=eq.'+session.user.id),
     apiGet('user_follows','select=ensemble_id&user_id=eq.'+session.user.id),
     apiGet('fallos','select=id,performance_id,base_score,adjustment,final_score&user_id=eq.'+session.user.id),
     apiGet('classification_snapshots','select=ensemble_id,performance_id,snapshot_type,percentage&snapshot_type=eq.pre_performance')
-  ]);state.categories=cats||[];state.event=events?.[0]||null;state.round=rounds?.[0]||null;state.ensembles=ens||[];state.participants=parts||[];state.performances=perfs||[];state.rubrics=rubs||[];state.rules=rules||[];state.profile=profiles?.[0]||null;state.follows=follows||[];state.myFallos=fallos||[];state.snapshots=snapshots||[];state.isAdmin=!!admins?.length;
-  if(state.round){for(const cat of state.categories){try{const s=await request('/rest/v1/rpc/get_current_selection',{method:'POST',body:JSON.stringify({p_round_id:state.round.id,p_category_id:cat.id})});state.mySelections[cat.id]=(s||[]).map(x=>x.ensemble_id)}catch{state.mySelections[cat.id]=[]}}}if(state.isAdmin){try{state.logs=await apiGet('admin_change_log','select=id,table_name,operation,changed_at&order=changed_at.desc&limit=12')}catch{state.logs=[]}}renderSelectOptions();renderPublic();renderProfile();renderAdmin()}catch(e){toast(e.message)}}
+  ]);if(session?.user?.id!==userId||loadEpoch!==falloCommunityEpoch)return;state.categories=cats||[];state.event=events?.[0]||null;state.round=rounds?.[0]||null;state.ensembles=ens||[];state.participants=parts||[];state.performances=perfs||[];state.rubrics=rubs||[];state.rules=rules||[];state.profile=profiles?.[0]||null;state.follows=follows||[];state.myFallos=fallos||[];state.snapshots=snapshots||[];state.isAdmin=!!admins?.length;
+  if(state.round){for(const cat of state.categories){try{const s=await request('/rest/v1/rpc/get_current_selection',{method:'POST',body:JSON.stringify({p_round_id:state.round.id,p_category_id:cat.id})});state.mySelections[cat.id]=(s||[]).map(x=>x.ensemble_id)}catch{state.mySelections[cat.id]=[]}}}if(state.isAdmin){try{state.logs=await apiGet('admin_change_log','select=id,table_name,operation,changed_at&order=changed_at.desc&limit=12')}catch{state.logs=[]}}if(session?.user?.id!==userId||loadEpoch!==falloCommunityEpoch)return;stateUserId=userId;renderSelectOptions();renderPublic();renderProfile();renderAdmin()}catch(e){toast(e.message)}}
 async function showApp(){if(recoveryMode){$('#appView').classList.add('hidden');$('#authView').classList.remove('hidden');return}if(session?.user){$('#authView').classList.add('hidden');$('#appView').classList.remove('hidden');$('#profileEmail').textContent=session.user.email||'Usuario';await loadState()}else{$('#appView').classList.add('hidden');$('#authView').classList.remove('hidden')}}
 async function toggleRubric(id,active){try{await apiPatch('rubrics','id=eq.'+id,{is_active:active});toast(active?'Rubro activado':'Rubro desactivado');await loadState()}catch(e){toast(e.message)}}
 $('#authForgot').onclick=()=>{clearRecoverySession();$('#recoverEmail').value=$('#authEmail').value.trim();showPasswordRecovery()};
@@ -345,7 +461,7 @@ $('#resetForm').onsubmit=async event=>{
 $('#tabLogin').onclick=()=>setAuthMode(false);$('#tabSignup').onclick=()=>setAuthMode(true);$('#googleBtn').onclick=()=>socialLogin('google');
 $('#authPasswordToggle').onclick=()=>{const show=$('#authPassword').type==='password';$('#authPassword').type=show?'text':'password';$('#authPasswordToggle').textContent=show?'Ocultar':'Mostrar';$('#authPasswordToggle').setAttribute('aria-label',show?'Ocultar contraseña':'Mostrar contraseña');$('#authPasswordToggle').setAttribute('aria-pressed',String(show))};
 $('#authForm').onsubmit=async event=>{event.preventDefault();if($('#authSubmit').disabled||!$('#authForm').reportValidity())return;const email=$('#authEmail').value.trim(),password=$('#authPassword').value;if(signupMode&&password!==$('#authPasswordConfirm').value){notice($('#authNotice'),'Las contraseñas no coinciden. Revisalas y volvé a intentar.','error');$('#authPasswordConfirm').focus();return}$('#authNotice').classList.add('hidden');$('#authSubmit').disabled=true;$('#tabLogin').disabled=true;$('#tabSignup').disabled=true;$('#authSubmit').textContent='Procesando...';try{if(signupMode){const d=await authSignup(email,password);if(d.access_token){session=d;localStorage.setItem('cej_session',JSON.stringify(session));await showApp()}else{notice($('#authNotice'),'Revisá tu correo para confirmar el registro. Después podés entrar con tu email y la contraseña que elegiste.','success')}}else{session=await authLogin(email,password);localStorage.setItem('cej_session',JSON.stringify(session));await showApp();toast('Bienvenido')}}catch(e){notice($('#authNotice'),e.message,'error')}finally{$('#authSubmit').disabled=false;$('#tabLogin').disabled=false;$('#tabSignup').disabled=false;$('#authSubmit').textContent=signupMode?'Crear cuenta con email':'Entrar con email'}};
-$('#logoutBtn').onclick=()=>{session=null;state.isAdmin=false;localStorage.removeItem('cej_session');showApp();toast('Sesión cerrada')};
+$('#logoutBtn').onclick=()=>{stateUserId=null;resetFalloCommunity();ui.communityPerformanceId=null;ui.falloId=null;ui.fallosTab='mine';state.myFallos=[];$('#falloEditor').innerHTML='';$('#fallosList').innerHTML='';session=null;state.isAdmin=false;localStorage.removeItem('cej_session');showApp();toast('Sesión cerrada')};
 $$('.nav').forEach(b=>b.onclick=()=>showScreen(b.dataset.screen));$('#homePredict').onclick=()=>showScreen('clasificados');$('#tabMyPredictions').onclick=()=>{ui.predTab='mine';renderPredictions()};$('#tabCommunity').onclick=()=>{ui.predTab='community';renderPredictions();fetchCommunity(ui.predCat)};$('#openAdmin').onclick=()=>{showScreen('admin');renderAdmin()};$('#adminBack').onclick=()=>showScreen('perfil');
 $('#saveProfile').onclick=async()=>{try{const body={display_name:$('#profileName').value.trim()||null,primary_ensemble_id:$('#profilePrimary').value||null,onboarding_complete:true};await apiPatch('profiles','user_id=eq.'+session.user.id,body);notice($('#profileNotice'),'Perfil guardado.','success');await loadState()}catch(e){notice($('#profileNotice'),e.message,'error')}};
 $('#saveEvent').onclick=async()=>{if(!state.isAdmin||!state.event)return;try{await apiPatch('events','id=eq.'+state.event.id,{status:$('#eventStatus').value});toast('Evento actualizado');await loadState()}catch(e){toast(e.message)}};
