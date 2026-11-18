@@ -1,4 +1,4 @@
-const CACHE_NAME = 'carnaval-en-juego-v2-pwa-1';
+const CACHE_NAME = 'carnaval-en-juego-v3-pwa-1';
 const STATIC_ASSETS = [
   '/manifest.webmanifest',
   '/icon-192.png',
