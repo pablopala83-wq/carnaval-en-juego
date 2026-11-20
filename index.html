@@ -19,7 +19,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Carnaval en Juego">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="stylesheet" href="/brand.css?v=editorial-2027-2">
+<link rel="stylesheet" href="/brand.css?v=editorial-2027-3">
 </head>
 <body>
 <div id="authView" class="auth">
@@ -76,7 +76,7 @@
 <section id="fallos" class="screen"><h1 class="page-title">Tus Fallos</h1><p class="page-sub">Calificá cada actuación por rubros. El promedio y tu ajuste forman el Fallo final.</p><div class="info-panel" style="margin-bottom:12px">Los Fallos se habilitan después de que cada conjunto haya actuado. Hacé tu propio Fallo para desbloquear los resultados de esa actuación en <strong>La gente</strong>.</div><div class="segmented" role="group" aria-label="Vista de Fallos"><button type="button" id="tabMyFallos" class="active" aria-pressed="true">Mis Fallos</button><button type="button" id="tabFalloCommunity" aria-pressed="false">La gente</button></div><div id="fallosCategories" class="chip-strip" aria-label="Filtrar por categoría"></div><div id="falloEditor" class="hidden"></div><div id="fallosList" class="stack"></div><div id="falloCommunityView" class="hidden"><p id="falloRankingDescription" class="muted-light"></p><details class="info-panel" style="margin-bottom:12px"><summary>Cómo se calcula el Fallo</summary><p>El resultado pondera la confianza de los Fallos y reduce la influencia de patrones de puntajes extremos y favoritismos reiterados. Cuando hay al menos 7 Fallos para una actuación, también limita el efecto de los puntajes que se alejan mucho de la mediana.</p></details><div id="falloCommunityDetail" class="hidden community-detail" aria-live="polite"></div><div id="falloRankingList" class="stack" aria-live="polite"></div><button type="button" class="text-link fallo-refresh" id="refreshFalloCommunity">Actualizar resultados</button><p class="muted-light">Solo se muestran estadísticas agregadas. Los Fallos de otras personas y sus identidades son privados.</p></div></section>
 <section id="hinchada" class="screen"><h1 class="page-title">La Hinchada</h1><p class="page-sub">El ranking de popularidad de los conjuntos en Carnaval en Juego.</p><div class="info-panel" style="margin-bottom:12px"><strong>Cada cuenta suma a una hinchada.</strong> El ranking se ordena por quienes eligieron a cada conjunto como principal en su perfil. Los seguidores se muestran como dato adicional y no se suman a ese total.</div><button type="button" id="choosePrimary" class="cta small" style="margin-bottom:14px">Elegir mi conjunto principal</button><div id="hinchadaCategories" class="chip-strip" aria-label="Filtrar hinchadas por categoría"></div><p id="hinchadaSummary" class="muted-light"></p><div id="hinchadaList" class="stack" aria-live="polite"></div><button type="button" id="refreshHinchada" class="text-link fallo-refresh">Actualizar popularidad</button><p class="muted-light">Participan todos los conjuntos activos, incluidos los ya clasificados. Los porcentajes representan a los usuarios de la app que eligieron un principal en la categoría seleccionada. Solo se publican totales: los nombres y las preferencias individuales de otras personas permanecen privados.</p></section>
 <section id="conjuntos" class="screen"><h1 class="page-title">Conjuntos</h1><p class="page-sub">Los 39 conjuntos del Concurso Oficial 2027. Marcá los que querés seguir.</p><div id="ensembleCategories" class="chip-strip" aria-label="Filtrar por categoría"></div><div id="ensembleList" class="stack"></div></section>
-<section id="clasificados" class="screen"><h1 class="page-title">Tus Liguillistas</h1><p id="predictionSub" class="page-sub">Elegí quiénes creés que van a llegar a la Liguilla.</p><div class="segmented"><button id="tabMyPredictions" class="active">Mi selección</button><button id="tabCommunity">La gente</button></div><div id="predictionCategories" class="chip-strip" aria-label="Categoría de pronóstico"></div><div id="predictionList"></div></section>
+<section id="clasificados" class="screen"><h1 class="page-title">Tus Liguillistas</h1><p id="predictionSub" class="page-sub">Elegí quiénes creés que van a llegar a la Liguilla.</p><div class="segmented"><button id="tabMyPredictions" class="active">Mi selección</button><button id="tabCommunity">La gente</button></div><div id="predictionSummary"></div><div id="predictionCategories" class="chip-strip" aria-label="Categoría de pronóstico"></div><div id="predictionList"></div></section>
 <section id="perfil" class="screen"><h1 class="page-title">Perfil</h1><p class="page-sub">Tu cuenta y preferencias de Carnaval en Juego.</p>
   <div class="card">
     <div class="title" id="profileEmail"></div><div class="meta" style="margin-top:5px">Cuenta autenticada</div>
@@ -151,7 +151,7 @@ let signupMode=false;
 let recoveryMode=null,recoverySession=null;
 try{recoverySession=JSON.parse(sessionStorage.getItem('cej_recovery_session')||'null')}catch{sessionStorage.removeItem('cej_recovery_session')}
 let session=JSON.parse(localStorage.getItem('cej_session')||'null');
-let state={categories:[],event:null,round:null,ensembles:[],participants:[],performances:[],rubrics:[],rules:[],profile:null,isAdmin:false,logs:[],follows:[],myFallos:[],snapshots:[],mySelections:{},community:{}};
+let state={categories:[],event:null,round:null,ensembles:[],participants:[],performances:[],rubrics:[],rules:[],profile:null,isAdmin:false,logs:[],follows:[],myFallos:[],snapshots:[],mySelections:{},predictionDirty:{},predictionLoadErrors:{},community:{}};
 function clearRecoverySession(){recoverySession=null;sessionStorage.removeItem('cej_recovery_session')}
 function showPasswordRecovery(mode='request'){
   recoveryMode=mode;$('#authStandard').classList.add('hidden');$('#recoveryPanel').classList.remove('hidden');$('#appView').classList.add('hidden');$('#authView').classList.remove('hidden');
@@ -417,9 +417,37 @@ async function submitFalloCurrent(){
   catch(e){toast(e.message);btn.disabled=false}
 }
 function canSavePrediction(){const r=state.round;if(!r||r.status!=='open')return false;const t=Date.now();return (!r.opens_at||t>=Date.parse(r.opens_at))&&(!r.closes_at||t<Date.parse(r.closes_at))}
+function predictionChoices(){return eventParts().map(ensembleOfPart).filter(e=>e&&(state.mySelections[e.category_id]||[]).includes(e.id))}
+function renderPredictionSummary(){
+  const chosen=predictionChoices(),total=chosen.length;
+  $('#tabMyPredictions').textContent=`Mi selección (${total})`;
+  $('#predictionSummary').classList.toggle('hidden',ui.predTab!=='mine');
+  const groups=state.categories.map(cat=>({cat,items:chosen.filter(e=>e.category_id===cat.id).sort((a,b)=>a.name.localeCompare(b.name,'es'))})).filter(g=>g.items.length);
+  const errors=Object.keys(state.predictionLoadErrors||{}).length;
+  $('#predictionSummary').innerHTML=`<section class="prediction-summary" aria-label="Resumen de tus Liguillistas"><div class="category-heading"><h2>Mis Liguillistas</h2><span role="status">${total} elegido${total===1?'':'s'}</span></div><p class="list-meta">Tus elegidos aparecen acá desde el primero. No hace falta completar ninguna cantidad.</p>${errors?'<p class="warning-inline" role="alert">No pudimos cargar todas tus elecciones guardadas. Reintentá en la categoría indicada.</p>':''}${groups.length?groups.map(({cat,items})=>`<div class="prediction-summary-group"><div class="prediction-summary-heading"><button type="button" class="linkbtn" data-edit-prediction="${esc(cat.id)}">${esc(categoryName(cat))} · ${items.length} · Editar</button><span class="badge ${state.predictionDirty?.[cat.id]?'warn':'good'}">${state.predictionDirty?.[cat.id]?'Cambios sin guardar':'Guardado'}</span></div><ul class="prediction-chosen">${items.map(e=>`<li>${esc(e.name)}</li>`).join('')}</ul></div>`).join(''):(errors?'<p class="info-panel">Reintentá para ver tu selección guardada.</p>':'<p class="info-panel">Todavía no elegiste conjuntos. Marcá uno abajo para empezar.</p>')}</section>`;
+  $$('#predictionSummary [data-edit-prediction]').forEach(b=>b.onclick=()=>{ui.predCat=b.dataset.editPrediction;renderPredictions();$('#predictionCategories').scrollIntoView({block:'start',behavior:'smooth'})});
+}
+function changePrediction(categoryId,ensembleId,checked){
+  if(ui.predSaving||!canSavePrediction()||state.predictionLoadErrors?.[categoryId])return false;
+  const category=state.categories.find(c=>c.id===categoryId),ensemble=state.ensembles.find(e=>e.id===ensembleId&&e.category_id===categoryId);
+  if(!category||!ensemble)return false;
+  const arr=state.mySelections[categoryId]||[],quota=quotaOf(category);
+  if(checked&&!arr.includes(ensembleId)&&quota!==null&&arr.length>=quota){toast(`Podés elegir hasta ${quota} en ${categoryName(category)}`);return false}
+  state.mySelections[categoryId]=checked?[...new Set([...arr,ensembleId])]:arr.filter(id=>id!==ensembleId);
+  state.predictionDirty[categoryId]=true;renderPredictions();return true;
+}
+async function retryPredictionCategory(categoryId){
+  const userId=session?.user?.id,roundId=state.round?.id;if(!userId||!roundId)return;
+  try{
+    const rows=await request('/rest/v1/rpc/get_current_selection',{method:'POST',body:JSON.stringify({p_round_id:roundId,p_category_id:categoryId})});
+    if(session?.user?.id!==userId||state.round?.id!==roundId)return;
+    state.mySelections[categoryId]=(rows||[]).map(x=>x.ensemble_id);delete state.predictionLoadErrors[categoryId];delete state.predictionDirty[categoryId];renderPredictions();
+  }catch(e){toast('No pudimos cargar tu selección. Volvé a intentar.')}
+}
 function renderPredictions(){
   if(!ui.predCat||!state.categories.some(c=>c.id===ui.predCat))ui.predCat=state.categories[0]?.id||null;
   const cat=state.categories.find(c=>c.id===ui.predCat);
+  renderPredictionSummary();
   $('#predictionSub').textContent='Podés ir armando tus Liguillistas de a poco y cambiarlos todas las veces que quieras mientras la ronda esté abierta.';
   $('#tabMyPredictions').classList.toggle('active',ui.predTab==='mine');$('#tabCommunity').classList.toggle('active',ui.predTab==='community');
   $('#predictionCategories').innerHTML=uiCategories(ui.predCat,'prediction-cat');
@@ -430,19 +458,22 @@ function renderPredictions(){
   if(ui.predTab==='community'){
     const percentages=state.community[cat.id],den=percentages?.[0]?.denominator||0;
     $('#predictionList').innerHTML=`<div class="category-heading"><h2>${esc(categoryName(cat))}</h2><span>${quotaLabel}</span></div>${!den?'<div class="info-panel"><strong>Todavía no hay pronósticos de la comunidad.</strong> Los porcentajes se calcularán a medida que la gente elija sus Liguillistas.</div>':`<p class="page-sub">Porcentaje de usuarios que eligió cada conjunto · ${den} participante${den===1?'':'s'}</p>`+rows.map(e=>{const x=percentages.find(v=>v.ensemble_id===e.id);return {e,n:Number(x?.percentage||0)}}).sort((a,b)=>b.n-a.n||a.e.name.localeCompare(b.e.name,'es')).map(x=>`<div class="community-line"><div class="community-top"><span>${esc(x.e.name)}</span><span>${x.n.toFixed(1)}%</span></div><div class="progress-track"><div class="progress-bar" style="width:${Math.max(0,Math.min(100,x.n))}%"></div></div></div>`).join('')}`;
+  }else if(state.predictionLoadErrors?.[cat.id]){
+    $('#predictionList').innerHTML='<div class="warning-inline" role="alert">No pudimos cargar tu selección guardada de '+esc(categoryName(cat))+'. Tus elecciones siguen guardadas. <button type="button" id="retryPrediction" class="linkbtn">Reintentar</button></div>';
+    $('#retryPrediction').onclick=()=>retryPredictionCategory(cat.id);
   }else{
     const countLabel=quota!==null?`${saved.length}/${quota} elegidos`:`${saved.length} elegido${saved.length===1?'':'s'}`;
     const helper=quota!==null
       ? `Podés guardar ahora aunque no completes los ${quota}. Después podés volver y cambiar tu selección.`
       : 'Podés ir guardando tu selección desde ahora. Cuando se confirmen los cupos oficiales por categoría, se aplicarán como máximo sin borrar lo que ya elegiste.';
-    $('#predictionList').innerHTML=`<div class="category-heading"><h2>${esc(categoryName(cat))}</h2><span>${countLabel}</span></div><p class="muted-light">Cupo: <strong>${quotaLabel}</strong></p>${!canSavePrediction()?'<div class="warning-inline">La ronda todavía no está habilitada para guardar.</div>':''}<div class="info-panel" style="margin-bottom:10px">${helper}</div>${rows.map(e=>{const yes=saved.includes(e.id);return `<div class="select-row ${yes?'selected':''}"><label><input type="checkbox" data-predict="${e.id}" ${yes?'checked':''} ${!canSavePrediction()||ui.predSaving?'disabled':''}><span>${esc(e.name)}</span></label>${yes?'<span class="badge good">Elegido</span>':''}</div>`}).join('')}<div class="selection-footer"><p>${saved.length?`Tenés ${saved.length} seleccionado${saved.length===1?'':'s'} en ${esc(categoryName(cat))}.`:'Todavía no elegiste ninguno en esta categoría.'}</p><button type="button" id="savePrediction" class="submit" ${!canSavePrediction()||ui.predSaving?'disabled':''}>${ui.predSaving?'Guardando…':'Guardar selección'}</button></div>`;
-    $$('#predictionList [data-predict]').forEach(el=>el.onchange=()=>{const arr=state.mySelections[cat.id]||[];if(el.checked){if(quota!==null&&arr.length>=quota){toast(`Podés elegir hasta ${quota} en ${categoryName(cat)}`);el.checked=false;return}state.mySelections[cat.id]=[...arr,el.dataset.predict]}else{state.mySelections[cat.id]=arr.filter(id=>id!==el.dataset.predict)}renderPredictions()});
+    $('#predictionList').innerHTML=`<div class="category-heading"><h2>${esc(categoryName(cat))}</h2><span>${countLabel}</span></div><p class="muted-light">Cupo: <strong>${quotaLabel}</strong></p>${!canSavePrediction()?'<div class="warning-inline">La ronda todavía no está habilitada para guardar.</div>':''}<div class="info-panel" style="margin-bottom:10px">${helper}</div>${rows.map(e=>{const yes=saved.includes(e.id);return `<div class="select-row ${yes?'selected':''}"><label><input type="checkbox" data-predict="${e.id}" ${yes?'checked':''} ${!canSavePrediction()||ui.predSaving?'disabled':''}><span>${esc(e.name)}</span></label>${yes?'<span class="badge good">Elegido</span>':''}</div>`}).join('')}<div class="selection-footer"><p><strong>${state.predictionDirty?.[cat.id]?'Cambios sin guardar. ' : 'Selección guardada. '}</strong>${saved.length?`Tenés ${saved.length} seleccionado${saved.length===1?'':'s'} en ${esc(categoryName(cat))}.`:'Todavía no elegiste ninguno en esta categoría.'}</p><button type="button" id="savePrediction" class="submit" ${!canSavePrediction()||ui.predSaving?'disabled':''}>${ui.predSaving?'Guardando…':'Guardar selección'}</button></div>`;
+    $$('#predictionList [data-predict]').forEach(el=>el.onchange=()=>{if(!changePrediction(cat.id,el.dataset.predict,el.checked))el.checked=(state.mySelections[cat.id]||[]).includes(el.dataset.predict)});
     if($('#savePrediction'))$('#savePrediction').onclick=()=>savePrediction(cat.id);
   }
   $$('#predictionCategories [data-prediction-cat]').forEach(b=>b.onclick=()=>{ui.predCat=b.dataset.predictionCat;renderPredictions();if(ui.predTab==='community')fetchCommunity(ui.predCat)});
 }
 async function savePrediction(categoryId){
-  if(ui.predSaving||!canSavePrediction())return;
+  if(ui.predSaving||!canSavePrediction()||state.predictionLoadErrors?.[categoryId])return;
   const userId=session?.user?.id,roundId=state.round.id,selected=[...(state.mySelections[categoryId]||[])];
   const category=state.categories.find(c=>c.id===categoryId);if(!userId||!category)return;
   const quota=quotaOf(category);if(quota!==null&&selected.length>quota)return toast(`Podés elegir hasta ${quota} en ${categoryName(category)}`);
@@ -450,7 +481,7 @@ async function savePrediction(categoryId){
   try{
     await request('/rest/v1/rpc/save_selection_prediction',{method:'POST',body:JSON.stringify({p_round_id:roundId,p_category_id:categoryId,p_ensemble_ids:selected})});
     if(session?.user?.id!==userId||state.round?.id!==roundId)return;
-    delete state.community[categoryId];toast('Tu selección quedó guardada');
+    delete state.community[categoryId];delete state.predictionDirty[categoryId];toast('Tu selección quedó guardada');
   }catch(e){toast(e.message)}
   finally{ui.predSaving=false;if(session?.user?.id===userId&&state.round?.id===roundId)renderPredictions()}
 }
@@ -490,8 +521,8 @@ async function loadState(){
       roundId?apiGet('prediction_round_category_rules',`select=*&round_id=eq.${roundId}`):Promise.resolve([]),
       eventId?apiGet('classification_snapshots','select=ensemble_id,performance_id,snapshot_type,percentage&snapshot_type=eq.pre_performance'):Promise.resolve([])
     ]);
-    state.participants=parts||[];state.performances=perfs||[];state.rules=rules||[];state.snapshots=snapshots||[];state.mySelections={};state.community={};
-    if(state.round){for(const cat of state.categories){try{const sel=await request('/rest/v1/rpc/get_current_selection',{method:'POST',body:JSON.stringify({p_round_id:state.round.id,p_category_id:cat.id})});state.mySelections[cat.id]=(sel||[]).map(x=>x.ensemble_id)}catch{state.mySelections[cat.id]=[]}}}
+    state.participants=parts||[];state.performances=perfs||[];state.rules=rules||[];state.snapshots=snapshots||[];state.mySelections={};state.predictionDirty={};state.predictionLoadErrors={};state.community={};
+    if(state.round){for(const cat of state.categories){try{const sel=await request('/rest/v1/rpc/get_current_selection',{method:'POST',body:JSON.stringify({p_round_id:state.round.id,p_category_id:cat.id})});state.mySelections[cat.id]=(sel||[]).map(x=>x.ensemble_id)}catch{state.predictionLoadErrors[cat.id]=true}}}
     if(state.isAdmin){try{state.logs=await apiGet('admin_change_log','select=id,table_name,operation,changed_at&order=changed_at.desc&limit=12')}catch{state.logs=[]}}
     if(session?.user?.id!==userId||loadEpoch!==falloCommunityEpoch)return;
     stateUserId=userId;renderSelectOptions();renderPublic();renderProfile();renderAdmin();
