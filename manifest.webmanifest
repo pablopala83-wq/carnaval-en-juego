@@ -1,13 +1,13 @@
 {
   "name": "Carnaval en Juego",
-  "short_name": "Carnaval",
-  "description": "El Carnaval tambien se juega. Previa 2027, Fallos y Tus Clasificados.",
+  "short_name": "CEJ",
+  "description": "Carnaval 2027. Tus Liguillistas, Tus Fallos y el ranking de hinchadas.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#07111e",
-  "theme_color": "#07111e",
+  "background_color": "#F3EBDD",
+  "theme_color": "#F3EBDD",
   "lang": "es-UY",
   "icons": [
     {

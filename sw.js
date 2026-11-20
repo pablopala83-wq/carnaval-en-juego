@@ -1,5 +1,14 @@
-const CACHE_NAME = 'carnaval-en-juego-v3-1-pwa-1';
+const CACHE_NAME = 'carnaval-en-juego-editorial-2027-1';
 const STATIC_ASSETS = [
+  '/',
+  '/brand.css',
+  '/logo-horizontal.svg',
+  '/logo-stacked.svg',
+  '/app-icon.svg',
+  '/favicon.png',
+  '/avatar-cej.png',
+  '/avatar-cej.svg',
+  '/hero-carnaval.jpg',
   '/manifest.webmanifest',
   '/icon-192.png',
   '/icon-512.png',
@@ -27,7 +36,13 @@ self.addEventListener('fetch', event => {
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request)
-        .then(response => response)
+        .then(response => {
+          if (response.ok && url.pathname === '/') {
+            const copy = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put('/', copy));
+          }
+          return response;
+        })
         .catch(() => caches.match('/'))
     );
     return;
