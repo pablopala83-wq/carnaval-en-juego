@@ -1,4 +1,4 @@
-const CACHE_NAME = 'carnaval-en-juego-editorial-2027-1';
+const CACHE_NAME = 'carnaval-en-juego-editorial-2027-2';
 const STATIC_ASSETS = [
   '/',
   '/brand.css',
@@ -35,9 +35,9 @@ self.addEventListener('fetch', event => {
 
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request)
+      fetch(request, { cache: 'no-store' })
         .then(response => {
-          if (response.ok && url.pathname === '/') {
+          if (response.ok && (url.pathname === '/' || url.pathname === '/index.html')) {
             const copy = response.clone();
             caches.open(CACHE_NAME).then(cache => cache.put('/', copy));
           }
