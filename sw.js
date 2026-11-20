@@ -1,7 +1,9 @@
-const CACHE_NAME = 'carnaval-en-juego-editorial-2027-3';
+const CACHE_NAME = 'carnaval-en-juego-editorial-2027-4';
 const STATIC_ASSETS = [
   '/',
   '/brand.css',
+  '/community-demo.js',
+  '/community-examples.json',
   '/logo-horizontal.svg',
   '/logo-stacked.svg',
   '/app-icon.svg',

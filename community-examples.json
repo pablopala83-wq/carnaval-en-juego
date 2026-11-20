@@ -1,0 +1,1739 @@
+{
+  "campaign": "carnaval-2027-examples-v1",
+  "event_slug": "concurso-oficial-2027",
+  "total_examples": 200,
+  "real_per_example": 2,
+  "label": "Datos de ejemplo · Simulados",
+  "method": "Distribución editorial basada en palmarés DAECPU y resultados 2026 de la Intendencia de Montevideo. No mide popularidad real. La trayectoria afecta cantidades, no los puntajes inventados.",
+  "sources": [
+    "https://daecpu.org.uy/ganadores/murgas.html",
+    "https://daecpu.org.uy/ganadores/parodistas.html",
+    "https://daecpu.org.uy/ganadores/humoristas.html",
+    "https://daecpu.org.uy/ganadores/revistas.html",
+    "https://daecpu.org.uy/ganadores/sociedad-de-negro-y-lubolos.html",
+    "https://www.montevideo.gub.uy/noticias/fallos-del-concurso-oficial-del-carnaval-2026"
+  ],
+  "category_example_budgets": {
+    "Murgas": 110,
+    "Parodistas": 30,
+    "Humoristas": 20,
+    "Revistas": 20,
+    "Comparsas": 20
+  },
+  "ensembles": [
+    {
+      "slug": "dona-bastarda",
+      "name": "Doña Bastarda",
+      "category": "Murgas",
+      "history_titles_reference": 2,
+      "example_votes": 9,
+      "example_support": 10
+    },
+    {
+      "slug": "la-gran-muneca",
+      "name": "La Gran Muñeca",
+      "category": "Murgas",
+      "history_titles_reference": 4,
+      "example_votes": 10,
+      "example_support": 10
+    },
+    {
+      "slug": "la-nueva-milonga",
+      "name": "La Nueva Milonga",
+      "category": "Murgas",
+      "history_titles_reference": 1,
+      "example_votes": 6,
+      "example_support": 6
+    },
+    {
+      "slug": "falta-y-resto",
+      "name": "Falta y Resto",
+      "category": "Murgas",
+      "history_titles_reference": 2,
+      "example_votes": 6,
+      "example_support": 6
+    },
+    {
+      "slug": "cayo-la-cabra",
+      "name": "Cayó la Cabra",
+      "category": "Murgas",
+      "history_titles_reference": 0,
+      "example_votes": 3,
+      "example_support": 3
+    },
+    {
+      "slug": "patos-cabreros",
+      "name": "Patos Cabreros",
+      "category": "Murgas",
+      "history_titles_reference": 16,
+      "example_votes": 12,
+      "example_support": 13
+    },
+    {
+      "slug": "un-titulo-viejo",
+      "name": "Un Título Viejo",
+      "category": "Murgas",
+      "history_titles_reference": 0,
+      "example_votes": 3,
+      "example_support": 3
+    },
+    {
+      "slug": "la-trasnochada",
+      "name": "La Trasnochada",
+      "category": "Murgas",
+      "history_titles_reference": 2,
+      "example_votes": 6,
+      "example_support": 6
+    },
+    {
+      "slug": "queso-magro",
+      "name": "Queso Magro",
+      "category": "Murgas",
+      "history_titles_reference": 0,
+      "example_votes": 3,
+      "example_support": 3
+    },
+    {
+      "slug": "los-diablos-verdes",
+      "name": "Los Diablos Verdes",
+      "category": "Murgas",
+      "history_titles_reference": 8,
+      "example_votes": 9,
+      "example_support": 10
+    },
+    {
+      "slug": "agarrate-catalina",
+      "name": "Agarrate Catalina",
+      "category": "Murgas",
+      "history_titles_reference": 5,
+      "example_votes": 8,
+      "example_support": 8
+    },
+    {
+      "slug": "asaltantes-con-patente",
+      "name": "Asaltantes con Patente",
+      "category": "Murgas",
+      "history_titles_reference": 15,
+      "example_votes": 12,
+      "example_support": 13
+    },
+    {
+      "slug": "jardin-del-pueblo",
+      "name": "Jardín del Pueblo",
+      "category": "Murgas",
+      "history_titles_reference": 0,
+      "example_votes": 3,
+      "example_support": 3
+    },
+    {
+      "slug": "la-justa",
+      "name": "La Justa",
+      "category": "Murgas",
+      "history_titles_reference": 0,
+      "example_votes": 3,
+      "example_support": 3
+    },
+    {
+      "slug": "la-mojigata",
+      "name": "La Mojigata",
+      "category": "Murgas",
+      "history_titles_reference": 0,
+      "example_votes": 3,
+      "example_support": 2
+    },
+    {
+      "slug": "sorda-de-un-oido",
+      "name": "Sorda de un Oído",
+      "category": "Murgas",
+      "history_titles_reference": 0,
+      "example_votes": 3,
+      "example_support": 2
+    },
+    {
+      "slug": "la-farola-de-treinta-y-tres",
+      "name": "La Farola de Treinta y Tres",
+      "category": "Murgas",
+      "history_titles_reference": 0,
+      "example_votes": 3,
+      "example_support": 2
+    },
+    {
+      "slug": "la-margarita",
+      "name": "La Margarita",
+      "category": "Murgas",
+      "history_titles_reference": 0,
+      "example_votes": 3,
+      "example_support": 2
+    },
+    {
+      "slug": "la-reina-de-la-teja",
+      "name": "La Reina de la Teja",
+      "category": "Murgas",
+      "history_titles_reference": 1,
+      "example_votes": 5,
+      "example_support": 5
+    },
+    {
+      "slug": "momosapiens",
+      "name": "Momosapiens",
+      "category": "Parodistas",
+      "history_titles_reference": 7,
+      "example_votes": 9,
+      "example_support": 10
+    },
+    {
+      "slug": "caballeros",
+      "name": "Caballeros",
+      "category": "Parodistas",
+      "history_titles_reference": 0,
+      "example_votes": 4,
+      "example_support": 4
+    },
+    {
+      "slug": "zingaros",
+      "name": "Zíngaros",
+      "category": "Parodistas",
+      "history_titles_reference": 11,
+      "example_votes": 9,
+      "example_support": 9
+    },
+    {
+      "slug": "los-muchachos",
+      "name": "Los Muchachos",
+      "category": "Parodistas",
+      "history_titles_reference": 3,
+      "example_votes": 5,
+      "example_support": 5
+    },
+    {
+      "slug": "el-clan",
+      "name": "El Clan",
+      "category": "Parodistas",
+      "history_titles_reference": 0,
+      "example_votes": 3,
+      "example_support": 2
+    },
+    {
+      "slug": "sociedad-anonima",
+      "name": "Sociedad Anónima",
+      "category": "Humoristas",
+      "history_titles_reference": 14,
+      "example_votes": 7,
+      "example_support": 7
+    },
+    {
+      "slug": "cyranos",
+      "name": "Cyranos",
+      "category": "Humoristas",
+      "history_titles_reference": 6,
+      "example_votes": 5,
+      "example_support": 5
+    },
+    {
+      "slug": "los-rolin",
+      "name": "Los Rolin",
+      "category": "Humoristas",
+      "history_titles_reference": 1,
+      "example_votes": 3,
+      "example_support": 3
+    },
+    {
+      "slug": "los-chobys",
+      "name": "Los Chobys",
+      "category": "Humoristas",
+      "history_titles_reference": 3,
+      "example_votes": 3,
+      "example_support": 3
+    },
+    {
+      "slug": "social-club",
+      "name": "Social Club",
+      "category": "Humoristas",
+      "history_titles_reference": 0,
+      "example_votes": 2,
+      "example_support": 2
+    },
+    {
+      "slug": "la-compania",
+      "name": "La Compañía",
+      "category": "Revistas",
+      "history_titles_reference": 6,
+      "example_votes": 5,
+      "example_support": 5
+    },
+    {
+      "slug": "tabu",
+      "name": "Tabú",
+      "category": "Revistas",
+      "history_titles_reference": 8,
+      "example_votes": 5,
+      "example_support": 5
+    },
+    {
+      "slug": "madame-gotica",
+      "name": "Madame Gótica",
+      "category": "Revistas",
+      "history_titles_reference": 3,
+      "example_votes": 4,
+      "example_support": 4
+    },
+    {
+      "slug": "carambola",
+      "name": "Carambola",
+      "category": "Revistas",
+      "history_titles_reference": 2,
+      "example_votes": 3,
+      "example_support": 3
+    },
+    {
+      "slug": "house",
+      "name": "House",
+      "category": "Revistas",
+      "history_titles_reference": 2,
+      "example_votes": 3,
+      "example_support": 3
+    },
+    {
+      "slug": "yambo-kenia",
+      "name": "Yambo Kenia",
+      "category": "Comparsas",
+      "history_titles_reference": 14,
+      "example_votes": 8,
+      "example_support": 9
+    },
+    {
+      "slug": "valores",
+      "name": "Valores",
+      "category": "Comparsas",
+      "history_titles_reference": 1,
+      "example_votes": 4,
+      "example_support": 4
+    },
+    {
+      "slug": "la-sara-del-cordon",
+      "name": "La Sara del Cordón",
+      "category": "Comparsas",
+      "history_titles_reference": 1,
+      "example_votes": 4,
+      "example_support": 3
+    },
+    {
+      "slug": "mas-que-lonja",
+      "name": "Más Que Lonja",
+      "category": "Comparsas",
+      "history_titles_reference": 0,
+      "example_votes": 2,
+      "example_support": 2
+    },
+    {
+      "slug": "la-nueva-escuela",
+      "name": "La Nueva Escuela",
+      "category": "Comparsas",
+      "history_titles_reference": 0,
+      "example_votes": 2,
+      "example_support": 2
+    }
+  ],
+  "examples": [
+    {
+      "id": "ejemplo-001",
+      "is_example": true,
+      "ensemble_slug": "jardin-del-pueblo",
+      "primary_slug": "la-gran-muneca",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-002",
+      "is_example": true,
+      "ensemble_slug": "la-farola-de-treinta-y-tres",
+      "primary_slug": "jardin-del-pueblo",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-003",
+      "is_example": true,
+      "ensemble_slug": "madame-gotica",
+      "primary_slug": "patos-cabreros",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-004",
+      "is_example": true,
+      "ensemble_slug": "asaltantes-con-patente",
+      "primary_slug": "yambo-kenia",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-005",
+      "is_example": true,
+      "ensemble_slug": "la-gran-muneca",
+      "primary_slug": "falta-y-resto",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-006",
+      "is_example": true,
+      "ensemble_slug": "mas-que-lonja",
+      "primary_slug": "momosapiens",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-007",
+      "is_example": true,
+      "ensemble_slug": "la-reina-de-la-teja",
+      "primary_slug": "la-trasnochada",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-008",
+      "is_example": true,
+      "ensemble_slug": "la-gran-muneca",
+      "primary_slug": "los-chobys",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-009",
+      "is_example": true,
+      "ensemble_slug": "zingaros",
+      "primary_slug": "valores",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-010",
+      "is_example": true,
+      "ensemble_slug": "house",
+      "primary_slug": "asaltantes-con-patente",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-011",
+      "is_example": true,
+      "ensemble_slug": "los-muchachos",
+      "primary_slug": "la-gran-muneca",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-012",
+      "is_example": true,
+      "ensemble_slug": "agarrate-catalina",
+      "primary_slug": "momosapiens",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-013",
+      "is_example": true,
+      "ensemble_slug": "la-gran-muneca",
+      "primary_slug": "dona-bastarda",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-014",
+      "is_example": true,
+      "ensemble_slug": "momosapiens",
+      "primary_slug": "la-gran-muneca",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-015",
+      "is_example": true,
+      "ensemble_slug": "los-diablos-verdes",
+      "primary_slug": "caballeros",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-016",
+      "is_example": true,
+      "ensemble_slug": "la-nueva-milonga",
+      "primary_slug": "asaltantes-con-patente",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-017",
+      "is_example": true,
+      "ensemble_slug": "caballeros",
+      "primary_slug": "un-titulo-viejo",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-018",
+      "is_example": true,
+      "ensemble_slug": "patos-cabreros",
+      "primary_slug": "tabu",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-019",
+      "is_example": true,
+      "ensemble_slug": "patos-cabreros",
+      "primary_slug": "momosapiens",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-020",
+      "is_example": true,
+      "ensemble_slug": "patos-cabreros",
+      "primary_slug": "momosapiens",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-021",
+      "is_example": true,
+      "ensemble_slug": "la-gran-muneca",
+      "primary_slug": "social-club",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-022",
+      "is_example": true,
+      "ensemble_slug": "asaltantes-con-patente",
+      "primary_slug": "asaltantes-con-patente",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-023",
+      "is_example": true,
+      "ensemble_slug": "tabu",
+      "primary_slug": "zingaros",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-024",
+      "is_example": true,
+      "ensemble_slug": "patos-cabreros",
+      "primary_slug": "zingaros",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-025",
+      "is_example": true,
+      "ensemble_slug": "la-margarita",
+      "primary_slug": "falta-y-resto",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-026",
+      "is_example": true,
+      "ensemble_slug": "la-mojigata",
+      "primary_slug": "dona-bastarda",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-027",
+      "is_example": true,
+      "ensemble_slug": "sociedad-anonima",
+      "primary_slug": "queso-magro",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-028",
+      "is_example": true,
+      "ensemble_slug": "agarrate-catalina",
+      "primary_slug": "social-club",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-029",
+      "is_example": true,
+      "ensemble_slug": "asaltantes-con-patente",
+      "primary_slug": "la-farola-de-treinta-y-tres",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-030",
+      "is_example": true,
+      "ensemble_slug": "dona-bastarda",
+      "primary_slug": "los-rolin",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-031",
+      "is_example": true,
+      "ensemble_slug": "yambo-kenia",
+      "primary_slug": "la-mojigata",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-032",
+      "is_example": true,
+      "ensemble_slug": "asaltantes-con-patente",
+      "primary_slug": "la-compania",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-033",
+      "is_example": true,
+      "ensemble_slug": "los-chobys",
+      "primary_slug": "momosapiens",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-034",
+      "is_example": true,
+      "ensemble_slug": "sociedad-anonima",
+      "primary_slug": "madame-gotica",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-035",
+      "is_example": true,
+      "ensemble_slug": "la-trasnochada",
+      "primary_slug": "asaltantes-con-patente",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-036",
+      "is_example": true,
+      "ensemble_slug": "la-trasnochada",
+      "primary_slug": "sociedad-anonima",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-037",
+      "is_example": true,
+      "ensemble_slug": "dona-bastarda",
+      "primary_slug": "yambo-kenia",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-038",
+      "is_example": true,
+      "ensemble_slug": "yambo-kenia",
+      "primary_slug": "los-chobys",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-039",
+      "is_example": true,
+      "ensemble_slug": "zingaros",
+      "primary_slug": "los-diablos-verdes",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-040",
+      "is_example": true,
+      "ensemble_slug": "mas-que-lonja",
+      "primary_slug": "patos-cabreros",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-041",
+      "is_example": true,
+      "ensemble_slug": "madame-gotica",
+      "primary_slug": "zingaros",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-042",
+      "is_example": true,
+      "ensemble_slug": "los-rolin",
+      "primary_slug": "los-muchachos",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-043",
+      "is_example": true,
+      "ensemble_slug": "patos-cabreros",
+      "primary_slug": "asaltantes-con-patente",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-044",
+      "is_example": true,
+      "ensemble_slug": "tabu",
+      "primary_slug": "la-margarita",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-045",
+      "is_example": true,
+      "ensemble_slug": "momosapiens",
+      "primary_slug": "momosapiens",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-046",
+      "is_example": true,
+      "ensemble_slug": "asaltantes-con-patente",
+      "primary_slug": "la-trasnochada",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-047",
+      "is_example": true,
+      "ensemble_slug": "cayo-la-cabra",
+      "primary_slug": "agarrate-catalina",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-048",
+      "is_example": true,
+      "ensemble_slug": "la-compania",
+      "primary_slug": "cayo-la-cabra",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-049",
+      "is_example": true,
+      "ensemble_slug": "la-trasnochada",
+      "primary_slug": "momosapiens",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-050",
+      "is_example": true,
+      "ensemble_slug": "valores",
+      "primary_slug": "valores",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-051",
+      "is_example": true,
+      "ensemble_slug": "falta-y-resto",
+      "primary_slug": "agarrate-catalina",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-052",
+      "is_example": true,
+      "ensemble_slug": "la-margarita",
+      "primary_slug": "la-nueva-milonga",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-053",
+      "is_example": true,
+      "ensemble_slug": "falta-y-resto",
+      "primary_slug": "la-margarita",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-054",
+      "is_example": true,
+      "ensemble_slug": "la-reina-de-la-teja",
+      "primary_slug": "cyranos",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-055",
+      "is_example": true,
+      "ensemble_slug": "queso-magro",
+      "primary_slug": "la-nueva-escuela",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-056",
+      "is_example": true,
+      "ensemble_slug": "asaltantes-con-patente",
+      "primary_slug": "cyranos",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-057",
+      "is_example": true,
+      "ensemble_slug": "agarrate-catalina",
+      "primary_slug": "la-gran-muneca",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-058",
+      "is_example": true,
+      "ensemble_slug": "la-mojigata",
+      "primary_slug": "la-justa",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-059",
+      "is_example": true,
+      "ensemble_slug": "queso-magro",
+      "primary_slug": "los-muchachos",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-060",
+      "is_example": true,
+      "ensemble_slug": "yambo-kenia",
+      "primary_slug": "mas-que-lonja",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-061",
+      "is_example": true,
+      "ensemble_slug": "cayo-la-cabra",
+      "primary_slug": "la-nueva-escuela",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-062",
+      "is_example": true,
+      "ensemble_slug": "carambola",
+      "primary_slug": "cyranos",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-063",
+      "is_example": true,
+      "ensemble_slug": "jardin-del-pueblo",
+      "primary_slug": "la-trasnochada",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-064",
+      "is_example": true,
+      "ensemble_slug": "el-clan",
+      "primary_slug": "los-diablos-verdes",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-065",
+      "is_example": true,
+      "ensemble_slug": "la-gran-muneca",
+      "primary_slug": "asaltantes-con-patente",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-066",
+      "is_example": true,
+      "ensemble_slug": "la-nueva-milonga",
+      "primary_slug": "patos-cabreros",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-067",
+      "is_example": true,
+      "ensemble_slug": "zingaros",
+      "primary_slug": "la-gran-muneca",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-068",
+      "is_example": true,
+      "ensemble_slug": "la-sara-del-cordon",
+      "primary_slug": "la-gran-muneca",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-069",
+      "is_example": true,
+      "ensemble_slug": "sorda-de-un-oido",
+      "primary_slug": "los-diablos-verdes",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-070",
+      "is_example": true,
+      "ensemble_slug": "asaltantes-con-patente",
+      "primary_slug": "los-chobys",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-071",
+      "is_example": true,
+      "ensemble_slug": "la-farola-de-treinta-y-tres",
+      "primary_slug": "momosapiens",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-072",
+      "is_example": true,
+      "ensemble_slug": "los-diablos-verdes",
+      "primary_slug": "madame-gotica",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-073",
+      "is_example": true,
+      "ensemble_slug": "zingaros",
+      "primary_slug": "la-gran-muneca",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-074",
+      "is_example": true,
+      "ensemble_slug": "los-diablos-verdes",
+      "primary_slug": "la-nueva-milonga",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-075",
+      "is_example": true,
+      "ensemble_slug": "patos-cabreros",
+      "primary_slug": "zingaros",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-076",
+      "is_example": true,
+      "ensemble_slug": "sorda-de-un-oido",
+      "primary_slug": "dona-bastarda",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-077",
+      "is_example": true,
+      "ensemble_slug": "dona-bastarda",
+      "primary_slug": "patos-cabreros",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-078",
+      "is_example": true,
+      "ensemble_slug": "agarrate-catalina",
+      "primary_slug": "caballeros",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-079",
+      "is_example": true,
+      "ensemble_slug": "la-gran-muneca",
+      "primary_slug": "jardin-del-pueblo",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-080",
+      "is_example": true,
+      "ensemble_slug": "agarrate-catalina",
+      "primary_slug": "la-nueva-milonga",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-081",
+      "is_example": true,
+      "ensemble_slug": "los-chobys",
+      "primary_slug": "patos-cabreros",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-082",
+      "is_example": true,
+      "ensemble_slug": "dona-bastarda",
+      "primary_slug": "patos-cabreros",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-083",
+      "is_example": true,
+      "ensemble_slug": "los-rolin",
+      "primary_slug": "house",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-084",
+      "is_example": true,
+      "ensemble_slug": "valores",
+      "primary_slug": "zingaros",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-085",
+      "is_example": true,
+      "ensemble_slug": "house",
+      "primary_slug": "sorda-de-un-oido",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-086",
+      "is_example": true,
+      "ensemble_slug": "la-mojigata",
+      "primary_slug": "la-sara-del-cordon",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-087",
+      "is_example": true,
+      "ensemble_slug": "zingaros",
+      "primary_slug": "caballeros",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-088",
+      "is_example": true,
+      "ensemble_slug": "la-gran-muneca",
+      "primary_slug": "falta-y-resto",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-089",
+      "is_example": true,
+      "ensemble_slug": "la-gran-muneca",
+      "primary_slug": "los-diablos-verdes",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-090",
+      "is_example": true,
+      "ensemble_slug": "la-justa",
+      "primary_slug": "los-muchachos",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-091",
+      "is_example": true,
+      "ensemble_slug": "la-gran-muneca",
+      "primary_slug": "yambo-kenia",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-092",
+      "is_example": true,
+      "ensemble_slug": "cyranos",
+      "primary_slug": "los-rolin",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-093",
+      "is_example": true,
+      "ensemble_slug": "jardin-del-pueblo",
+      "primary_slug": "dona-bastarda",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-094",
+      "is_example": true,
+      "ensemble_slug": "madame-gotica",
+      "primary_slug": "los-muchachos",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-095",
+      "is_example": true,
+      "ensemble_slug": "agarrate-catalina",
+      "primary_slug": "sociedad-anonima",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-096",
+      "is_example": true,
+      "ensemble_slug": "la-gran-muneca",
+      "primary_slug": "jardin-del-pueblo",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-097",
+      "is_example": true,
+      "ensemble_slug": "la-reina-de-la-teja",
+      "primary_slug": "los-rolin",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-098",
+      "is_example": true,
+      "ensemble_slug": "momosapiens",
+      "primary_slug": "falta-y-resto",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-099",
+      "is_example": true,
+      "ensemble_slug": "dona-bastarda",
+      "primary_slug": "house",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-100",
+      "is_example": true,
+      "ensemble_slug": "valores",
+      "primary_slug": "la-farola-de-treinta-y-tres",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-101",
+      "is_example": true,
+      "ensemble_slug": "valores",
+      "primary_slug": "un-titulo-viejo",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-102",
+      "is_example": true,
+      "ensemble_slug": "la-justa",
+      "primary_slug": "cayo-la-cabra",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-103",
+      "is_example": true,
+      "ensemble_slug": "el-clan",
+      "primary_slug": "queso-magro",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-104",
+      "is_example": true,
+      "ensemble_slug": "la-nueva-escuela",
+      "primary_slug": "mas-que-lonja",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-105",
+      "is_example": true,
+      "ensemble_slug": "falta-y-resto",
+      "primary_slug": "sorda-de-un-oido",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-106",
+      "is_example": true,
+      "ensemble_slug": "tabu",
+      "primary_slug": "agarrate-catalina",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-107",
+      "is_example": true,
+      "ensemble_slug": "madame-gotica",
+      "primary_slug": "dona-bastarda",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-108",
+      "is_example": true,
+      "ensemble_slug": "asaltantes-con-patente",
+      "primary_slug": "carambola",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-109",
+      "is_example": true,
+      "ensemble_slug": "los-muchachos",
+      "primary_slug": "carambola",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-110",
+      "is_example": true,
+      "ensemble_slug": "agarrate-catalina",
+      "primary_slug": "asaltantes-con-patente",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-111",
+      "is_example": true,
+      "ensemble_slug": "la-nueva-milonga",
+      "primary_slug": "zingaros",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-112",
+      "is_example": true,
+      "ensemble_slug": "la-compania",
+      "primary_slug": "caballeros",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-113",
+      "is_example": true,
+      "ensemble_slug": "dona-bastarda",
+      "primary_slug": "yambo-kenia",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-114",
+      "is_example": true,
+      "ensemble_slug": "un-titulo-viejo",
+      "primary_slug": "valores",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-115",
+      "is_example": true,
+      "ensemble_slug": "yambo-kenia",
+      "primary_slug": "yambo-kenia",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-116",
+      "is_example": true,
+      "ensemble_slug": "la-sara-del-cordon",
+      "primary_slug": "agarrate-catalina",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-117",
+      "is_example": true,
+      "ensemble_slug": "caballeros",
+      "primary_slug": "sociedad-anonima",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-118",
+      "is_example": true,
+      "ensemble_slug": "caballeros",
+      "primary_slug": "la-justa",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-119",
+      "is_example": true,
+      "ensemble_slug": "los-rolin",
+      "primary_slug": "la-trasnochada",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-120",
+      "is_example": true,
+      "ensemble_slug": "zingaros",
+      "primary_slug": "zingaros",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-121",
+      "is_example": true,
+      "ensemble_slug": "momosapiens",
+      "primary_slug": "los-diablos-verdes",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-122",
+      "is_example": true,
+      "ensemble_slug": "yambo-kenia",
+      "primary_slug": "tabu",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-123",
+      "is_example": true,
+      "ensemble_slug": "los-muchachos",
+      "primary_slug": "patos-cabreros",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-124",
+      "is_example": true,
+      "ensemble_slug": "sociedad-anonima",
+      "primary_slug": "cayo-la-cabra",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-125",
+      "is_example": true,
+      "ensemble_slug": "un-titulo-viejo",
+      "primary_slug": "la-sara-del-cordon",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-126",
+      "is_example": true,
+      "ensemble_slug": "dona-bastarda",
+      "primary_slug": "los-diablos-verdes",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-127",
+      "is_example": true,
+      "ensemble_slug": "la-reina-de-la-teja",
+      "primary_slug": "yambo-kenia",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-128",
+      "is_example": true,
+      "ensemble_slug": "la-compania",
+      "primary_slug": "dona-bastarda",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-129",
+      "is_example": true,
+      "ensemble_slug": "yambo-kenia",
+      "primary_slug": "agarrate-catalina",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-130",
+      "is_example": true,
+      "ensemble_slug": "la-reina-de-la-teja",
+      "primary_slug": "dona-bastarda",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-131",
+      "is_example": true,
+      "ensemble_slug": "sociedad-anonima",
+      "primary_slug": "patos-cabreros",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-132",
+      "is_example": true,
+      "ensemble_slug": "house",
+      "primary_slug": "patos-cabreros",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-133",
+      "is_example": true,
+      "ensemble_slug": "asaltantes-con-patente",
+      "primary_slug": "la-mojigata",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-134",
+      "is_example": true,
+      "ensemble_slug": "los-chobys",
+      "primary_slug": "asaltantes-con-patente",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-135",
+      "is_example": true,
+      "ensemble_slug": "patos-cabreros",
+      "primary_slug": "los-diablos-verdes",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-136",
+      "is_example": true,
+      "ensemble_slug": "caballeros",
+      "primary_slug": "los-muchachos",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-137",
+      "is_example": true,
+      "ensemble_slug": "carambola",
+      "primary_slug": "la-trasnochada",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-138",
+      "is_example": true,
+      "ensemble_slug": "los-diablos-verdes",
+      "primary_slug": "asaltantes-con-patente",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-139",
+      "is_example": true,
+      "ensemble_slug": "queso-magro",
+      "primary_slug": "los-diablos-verdes",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-140",
+      "is_example": true,
+      "ensemble_slug": "momosapiens",
+      "primary_slug": "queso-magro",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-141",
+      "is_example": true,
+      "ensemble_slug": "cyranos",
+      "primary_slug": "madame-gotica",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-142",
+      "is_example": true,
+      "ensemble_slug": "zingaros",
+      "primary_slug": "el-clan",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-143",
+      "is_example": true,
+      "ensemble_slug": "patos-cabreros",
+      "primary_slug": "patos-cabreros",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-144",
+      "is_example": true,
+      "ensemble_slug": "la-trasnochada",
+      "primary_slug": "la-gran-muneca",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-145",
+      "is_example": true,
+      "ensemble_slug": "la-sara-del-cordon",
+      "primary_slug": "sociedad-anonima",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-146",
+      "is_example": true,
+      "ensemble_slug": "asaltantes-con-patente",
+      "primary_slug": "la-trasnochada",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-147",
+      "is_example": true,
+      "ensemble_slug": "patos-cabreros",
+      "primary_slug": "la-gran-muneca",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-148",
+      "is_example": true,
+      "ensemble_slug": "la-nueva-escuela",
+      "primary_slug": "la-compania",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-149",
+      "is_example": true,
+      "ensemble_slug": "los-diablos-verdes",
+      "primary_slug": "madame-gotica",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-150",
+      "is_example": true,
+      "ensemble_slug": "patos-cabreros",
+      "primary_slug": "tabu",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-151",
+      "is_example": true,
+      "ensemble_slug": "cyranos",
+      "primary_slug": "la-compania",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-152",
+      "is_example": true,
+      "ensemble_slug": "la-farola-de-treinta-y-tres",
+      "primary_slug": "la-reina-de-la-teja",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-153",
+      "is_example": true,
+      "ensemble_slug": "falta-y-resto",
+      "primary_slug": "patos-cabreros",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-154",
+      "is_example": true,
+      "ensemble_slug": "la-sara-del-cordon",
+      "primary_slug": "yambo-kenia",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-155",
+      "is_example": true,
+      "ensemble_slug": "asaltantes-con-patente",
+      "primary_slug": "la-gran-muneca",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-156",
+      "is_example": true,
+      "ensemble_slug": "el-clan",
+      "primary_slug": "sociedad-anonima",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-157",
+      "is_example": true,
+      "ensemble_slug": "yambo-kenia",
+      "primary_slug": "asaltantes-con-patente",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-158",
+      "is_example": true,
+      "ensemble_slug": "los-diablos-verdes",
+      "primary_slug": "dona-bastarda",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-159",
+      "is_example": true,
+      "ensemble_slug": "momosapiens",
+      "primary_slug": "la-reina-de-la-teja",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-160",
+      "is_example": true,
+      "ensemble_slug": "social-club",
+      "primary_slug": "zingaros",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-161",
+      "is_example": true,
+      "ensemble_slug": "falta-y-resto",
+      "primary_slug": "la-sara-del-cordon",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-162",
+      "is_example": true,
+      "ensemble_slug": "patos-cabreros",
+      "primary_slug": "la-reina-de-la-teja",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-163",
+      "is_example": true,
+      "ensemble_slug": "falta-y-resto",
+      "primary_slug": "la-compania",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-164",
+      "is_example": true,
+      "ensemble_slug": "los-muchachos",
+      "primary_slug": "tabu",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-165",
+      "is_example": true,
+      "ensemble_slug": "los-diablos-verdes",
+      "primary_slug": "patos-cabreros",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-166",
+      "is_example": true,
+      "ensemble_slug": "tabu",
+      "primary_slug": "falta-y-resto",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-167",
+      "is_example": true,
+      "ensemble_slug": "sociedad-anonima",
+      "primary_slug": "dona-bastarda",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-168",
+      "is_example": true,
+      "ensemble_slug": "sociedad-anonima",
+      "primary_slug": "asaltantes-con-patente",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-169",
+      "is_example": true,
+      "ensemble_slug": "momosapiens",
+      "primary_slug": "los-diablos-verdes",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-170",
+      "is_example": true,
+      "ensemble_slug": "zingaros",
+      "primary_slug": "un-titulo-viejo",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-171",
+      "is_example": true,
+      "ensemble_slug": "carambola",
+      "primary_slug": "la-nueva-milonga",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-172",
+      "is_example": true,
+      "ensemble_slug": "la-compania",
+      "primary_slug": "valores",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-173",
+      "is_example": true,
+      "ensemble_slug": "la-trasnochada",
+      "primary_slug": "los-diablos-verdes",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-174",
+      "is_example": true,
+      "ensemble_slug": "la-margarita",
+      "primary_slug": "la-compania",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-175",
+      "is_example": true,
+      "ensemble_slug": "momosapiens",
+      "primary_slug": "sociedad-anonima",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-176",
+      "is_example": true,
+      "ensemble_slug": "cayo-la-cabra",
+      "primary_slug": "sociedad-anonima",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-177",
+      "is_example": true,
+      "ensemble_slug": "cyranos",
+      "primary_slug": "carambola",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-178",
+      "is_example": true,
+      "ensemble_slug": "la-justa",
+      "primary_slug": "agarrate-catalina",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-179",
+      "is_example": true,
+      "ensemble_slug": "los-diablos-verdes",
+      "primary_slug": "yambo-kenia",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-180",
+      "is_example": true,
+      "ensemble_slug": "yambo-kenia",
+      "primary_slug": "agarrate-catalina",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-181",
+      "is_example": true,
+      "ensemble_slug": "cyranos",
+      "primary_slug": "zingaros",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-182",
+      "is_example": true,
+      "ensemble_slug": "la-nueva-milonga",
+      "primary_slug": "agarrate-catalina",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-183",
+      "is_example": true,
+      "ensemble_slug": "sociedad-anonima",
+      "primary_slug": "asaltantes-con-patente",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-184",
+      "is_example": true,
+      "ensemble_slug": "dona-bastarda",
+      "primary_slug": "cyranos",
+      "score": 6.5
+    },
+    {
+      "id": "ejemplo-185",
+      "is_example": true,
+      "ensemble_slug": "agarrate-catalina",
+      "primary_slug": "yambo-kenia",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-186",
+      "is_example": true,
+      "ensemble_slug": "los-diablos-verdes",
+      "primary_slug": "la-reina-de-la-teja",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-187",
+      "is_example": true,
+      "ensemble_slug": "momosapiens",
+      "primary_slug": "la-reina-de-la-teja",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-188",
+      "is_example": true,
+      "ensemble_slug": "los-muchachos",
+      "primary_slug": "dona-bastarda",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-189",
+      "is_example": true,
+      "ensemble_slug": "la-compania",
+      "primary_slug": "momosapiens",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-190",
+      "is_example": true,
+      "ensemble_slug": "dona-bastarda",
+      "primary_slug": "la-nueva-milonga",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-191",
+      "is_example": true,
+      "ensemble_slug": "zingaros",
+      "primary_slug": "house",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-192",
+      "is_example": true,
+      "ensemble_slug": "la-trasnochada",
+      "primary_slug": "falta-y-resto",
+      "score": 9.5
+    },
+    {
+      "id": "ejemplo-193",
+      "is_example": true,
+      "ensemble_slug": "la-nueva-milonga",
+      "primary_slug": "patos-cabreros",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-194",
+      "is_example": true,
+      "ensemble_slug": "patos-cabreros",
+      "primary_slug": "momosapiens",
+      "score": 8
+    },
+    {
+      "id": "ejemplo-195",
+      "is_example": true,
+      "ensemble_slug": "asaltantes-con-patente",
+      "primary_slug": "asaltantes-con-patente",
+      "score": 7.5
+    },
+    {
+      "id": "ejemplo-196",
+      "is_example": true,
+      "ensemble_slug": "sorda-de-un-oido",
+      "primary_slug": "la-justa",
+      "score": 7
+    },
+    {
+      "id": "ejemplo-197",
+      "is_example": true,
+      "ensemble_slug": "social-club",
+      "primary_slug": "el-clan",
+      "score": 9
+    },
+    {
+      "id": "ejemplo-198",
+      "is_example": true,
+      "ensemble_slug": "tabu",
+      "primary_slug": "tabu",
+      "score": 8.5
+    },
+    {
+      "id": "ejemplo-199",
+      "is_example": true,
+      "ensemble_slug": "la-nueva-milonga",
+      "primary_slug": "la-nueva-milonga",
+      "score": 6
+    },
+    {
+      "id": "ejemplo-200",
+      "is_example": true,
+      "ensemble_slug": "un-titulo-viejo",
+      "primary_slug": "cyranos",
+      "score": 8.5
+    }
+  ]
+}
